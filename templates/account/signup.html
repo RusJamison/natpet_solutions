@@ -1,5 +1,6 @@
 {% extends "account/base_entrance.html" %}
 {% load allauth i18n %}
+{% load crispy_forms_tags %}
 {% block head_title %}
     {% trans "Signup" %}
 {% endblock head_title %}
@@ -21,14 +22,11 @@
         {% element form form=form method="post" action=action_url tags="entrance,signup" %}
             {% slot body %}
                 {% csrf_token %}
-                {% element fields form=form unlabeled=True %}
-                {% endelement %}
+                {{form | crispy}}
                 {{ redirect_field }}
             {% endslot %}
             {% slot actions %}
-                {% element button tags="prominent,signup" type="submit" %}
-                    {% trans "Sign Up" %}
-                {% endelement %}
+            <button class="btn btn-info fw-bold" type="submit">Sign Up</button>
             {% endslot %}
         {% endelement %}
     {% endif %}

@@ -26,6 +26,8 @@ SECRET_KEY = 'django-insecure-q#lnieydpme@t#ixj)!%*=m_)3_+ge&_tc$ji6pt^$zw*&v4_v
 DEBUG = True
 
 ALLOWED_HOSTS = ['8000-rusjamison-natpetsoluti-muxblq7cukq.ws.codeinstitute-ide.net']
+CSRF_TRUSTED_ORIGINS = ['https://8000-rusjamison-natpetsoluti-muxblq7cukq.ws.codeinstitute-ide.net'
+]
 
 
 # Application definition
@@ -37,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
      # our apps
     'users',
@@ -93,6 +96,8 @@ MIDDLEWARE = [
 
 AUTH_USER_MODEL='users.User'
 ROOT_URLCONF = 'natpet_solutions.urls'
+
+
 
 TEMPLATES = [
     {
@@ -166,4 +171,4 @@ STATIC_ROOT = BASE_DIR / 'static'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-CRISPY_TEMPLATE_PACK='boostrap5'
+CRISPY_TEMPLATE_PACK='bootstrap5'
