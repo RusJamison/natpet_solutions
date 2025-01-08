@@ -5,6 +5,7 @@
     {% trans "Signup" %}
 {% endblock head_title %}
 {% block content %}
+<div class="form-container">
     {% element h1 %}
         {% trans "Sign Up" %}
     {% endelement %}
@@ -26,7 +27,7 @@
                 {{ redirect_field }}
             {% endslot %}
             {% slot actions %}
-            <button class="btn btn-info fw-bold" type="submit">Sign Up</button>
+              <button class="btn btn-info" type="submit">Sign Up</button>
             {% endslot %}
         {% endelement %}
     {% endif %}
@@ -40,4 +41,5 @@
     {% if SOCIALACCOUNT_ENABLED %}
         {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
     {% endif %}
+</div>
 {% endblock content %}
