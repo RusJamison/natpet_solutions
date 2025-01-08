@@ -129,3 +129,7 @@ Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` f
 ---
 
 Happy coding!
+
+![Bootstrap 5.2.3 static CSS & JS](https://getbootstrap.com/docs/5.2/getting-started/download/)
+![Bootstrap navbar](https://startbootstrap.com/template/shop-homepage)
+
