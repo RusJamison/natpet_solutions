@@ -10,9 +10,9 @@ class BasketAdmin(admin.ModelAdmin):
     search_fields = ['customer__user__username']
 
 
-#@admin.register(BasketItem)
-#class BasketItemAdmin(admin.ModelAdmin):
-    #list_display = ['basket', 'product', 'quantity', 'created_at']
-    #list_filter = ['basket', 'product']
-    #search_fields = ['basket__pk', 'product__name']
+@admin.register(BasketItem)
+class BasketItemAdmin(admin.ModelAdmin):
+    list_display = ['basket', 'product', 'quantity', 'created_at']
+    list_filter = ['basket', 'product']
+    search_fields = ['basket__pk', 'product__name']
 
