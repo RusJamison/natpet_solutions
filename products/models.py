@@ -64,7 +64,7 @@ class Product(models.Model):
 
 class Manufacturer(models.Model):
     name = models.CharField(max_length= 255, unique=True)
-    description = models.TextField(null=True, blank=True, default=None)
+    #description = models.TextField(null=True, blank=True, default=None)
 
     def __str__(self):
         return self.name
