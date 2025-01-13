@@ -1,8 +1,74 @@
-from django.shortcuts import render
+from django.conf import settings
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views import View
-from django.contrib.auth.mixins import LoginRequiredMixin
-# Create your views here.
+from django.contrib import messages
 
-class BasketView(View, LoginRequiredMixin):
+from basket.basket import Basket
+from basket.forms import BasketAddProductForm
+from products.models import Product
+
+
+# Create your views here.
+class AddToBasketView(View):
+    def post(self, request, product_id):
+        basket = Basket(request)
+        product = get_object_or_404(Product, id=product_id)
+        form = BasketAddProductForm(request.POST)
+
+        if form.is_valid():
+            cd = form.cleaned_data
+            basket.add(
+                product=product,
+                quantity=cd["quantity"],
+                override_quantity=cd["override"],
+            )
+        messages.success(request, f"{product.name} has been added to your basket.")
+        return redirect("basket")
+
+
+class AddToBasketProductView(View):
+    """Add a product to basket on the product card"""
+
+    def post(self, request, product_id):
+        basket = Basket(request)
+        product = get_object_or_404(Product, id=product_id)
+        print("adding product {} to basket".format(product))
+        print(
+            "current session: {}".format(request.session.get(settings.BASKET_SESSION_ID))
+        )
+        basket.add(product, 1, override_quantity=False)
+        messages.success(request, f"{product.name} has been added to your basket.")
+        return redirect(request.META["HTTP_REFERER"])
+
+
+class RemoveBasketProduct(View):
+    def post(self, request, product_id):
+        basket = Basket(request)
+        product = get_object_or_404(Product, id=product_id)
+        print("removing product {}".format(product))
+        print(
+            "current session: {}".format(request.session.get(settings.BASKET_SESSION_ID))
+        )
+        basket.remove(product.id)
+        messages.success(request, f"{product.name} has been removed from your basket.")
+        return redirect("basket")
+
+
+class BasketDetailView(View):
     def get(self, request):
-        return render(request, 'basket/basket.html')
+        basket = Basket(request)
+        return render(request, "basket/basket.html", {"basket": basket})
+
+class UpdateItemQuantity(View):
+    def post(self, request, product_id):
+        basket = Basket(request)
+        product = get_object_or_404(Product, id=product_id)
+        quantity = int(request.POST.get("quantity"))
+        override_quantity = True
+        print("updating quantity of product {} to {}".format(product, quantity))
+        print(
+            "current session: {}".format(request.session.get(settings.BASKET_SESSION_ID))
+        )
+        basket.add(product, quantity, override_quantity=override_quantity)
+        messages.success(request, f"Quantity of {product.name} has been updated.")
+        return redirect("basket")

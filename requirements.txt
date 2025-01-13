@@ -1,3 +1,11 @@
 asgiref==3.8.1
+cloudinary==1.36.0
+crispy-bootstrap5==2024.10
+dj3-cloudinary-storage==0.0.6
 Django==5.1.4
+django-allauth==65.3.1
+django-cors-headers==4.6.0
+django-crispy-forms==2.3
+PyJWT==2.10.1
 sqlparse==0.5.3
+urllib3==1.26.20

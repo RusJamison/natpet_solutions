@@ -1,4 +1,65 @@
 {% extends 'layouts/base.html' %}
 {% block content %}
-    
+<div class="container">
+    {% if basket %}
+    <table class="table">
+        <thead class="bg-info">
+            <tr>
+                <th>Image</th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Remove</th>
+                <th>Unit Price</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in basket %}
+            {% with item.product as product %}
+            <tr>
+                <td><a href="{% url 'product_detail' slug=product.slug %}">
+                    <img src="{{ product.image.url }}" alt="{{product.name}}" class="img-fluid" width="50" />
+                    </a></td>
+                <td>{{product.name}}</td>
+                <td>
+                    <form action="{% url 'update_item_quantity' product_id=product.id%}" method="post">
+                        {% csrf_token %}
+                        <input type="number" name="quantity" value="{{item.quantity}}" min="1" max="{{product.stock}}">
+                        <button class="btn btn-sm btn-outline-success"><i class="bi bi-pencil"></i></button>
+                    </form>
+                </td>
+                <td>
+                    <form action="{% url 'basket_remove' product_id=product.id%}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+                    </form>
+                </td>
+                <td>
+                    {{product.price}}
+                </td>
+                <td>{{item.total_price}}</td>
+            </tr>
+            {% endwith %}
+            {% endfor %}
+
+            <tr class="total bg-info">
+                <td>Total</td>
+                <td colspan="4"></td>
+                <td class="num fw-bold">${{ basket.get_total_price }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="d-flex justify-content-between">
+        <a href="{% url 'product_list' %}" class="btn btn-success"><span
+                class="glyphicon glyphicon-arrow-left"></span>&nbsp;Continue
+            Shopping</a>
+        <a href="#" class="btn btn-primary">Proceed to checkbox<span
+                class="glyphicon glyphicon-chevron-right"></span></a>
+    </div>
+
+    {% else %}
+    <p>Your basket is empty</p>
+    <a href="{% url 'product_list' %}" class="btn btn-info">Continue Shopping</a>
+    {% endif %}
+</div>
 {% endblock content %}
