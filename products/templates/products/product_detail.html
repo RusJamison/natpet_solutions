@@ -4,14 +4,13 @@
 <section class="py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="row gx-4 gx-lg-5 align-items-center">
-            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0"
-                    src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." /></div>
+            <div class="img-container"><img src="{{product.image.url}}" class="card-img-top" alt="{{product.name}}" /></div>
             <div class="col-md-6">
                 <div class="small mb-1">SKU: {{ product.sku }}</div>
                 <h3 class="display-5 fw-bolder">{{product.name}}</h3>
                 <h6>Model: {{product.model}}</h6>
                 <div class="fs-5 mb-5 d-flex justify-content-between">
-                    <span class="fw-bold">${{product.price}}</span>
+                    <span class="fw-bold">€{{product.price}}</span>
                     <span>{{product.stock}} Available</span>
                 </div>
                 <p>
@@ -24,7 +23,7 @@
                 {% endif %}
 
                 <div class="">
-                    <p class="price">${{ product.price }}</p>
+                    <p class="price">€{{ product.price }}</p>
                     <form action="{% url "basket_add" product_id=product.id %}" method="post">
                         {{ form | crispy }}
                         {% csrf_token %}
@@ -50,7 +49,7 @@
                         <p class="small"><a href="#!" class="text-muted"></a></p>
 
                         {% comment %}
-                        <p class="small text-danger"><s>${{product.price}}</s></p>
+                        <p class="small text-danger"><s>€{{product.price}}</s></p>
                         {% endcomment %}
 
                     </div>
@@ -62,7 +61,7 @@
                         <small class="text-muted mb-0">{{product.description|slice:"50"}}</small>
                     </div>
                     <div class="d-flex justify-content-between mb-3">
-                        <p class="text-muted mb-0"><span class="fw-bold">$ {{product.price}}</span></p>
+                        <p class="text-muted mb-0"><span class="fw-bold">€ {{product.price}}</span></p>
                         <div class="d-flex justify-content-between mb-2">
                             <p class="text-muted mb-0">Available: <span class="fw-bold">{{product.stock}}</span>
                             </p>
