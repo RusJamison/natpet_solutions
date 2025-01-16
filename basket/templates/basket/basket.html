@@ -50,11 +50,10 @@
         </tbody>
     </table>
     <div class="d-flex justify-content-between">
-        <a href="{% url 'product_list' %}" class="btn btn-success"><span
-                class="glyphicon glyphicon-arrow-left"></span>&nbsp;Continue
+        <a href="{% url 'product_list' %}" class="btn btn-success"><i class="bi bi-chevron-left"></i>&nbsp;Continue
             Shopping</a>
-        <a href="#" class="btn btn-primary">Proceed to checkbox<span
-                class="glyphicon glyphicon-chevron-right"></span></a>
+            <a href="{% url 'checkout_page' %}" class="btn btn-primary">Proceed to checkbox<i class="bi bi-chevron-right"></i></a>
+            </a>
     </div>
 
     {% else %}

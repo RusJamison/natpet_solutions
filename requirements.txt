@@ -8,4 +8,5 @@ django-cors-headers==4.6.0
 django-crispy-forms==2.3
 PyJWT==2.10.1
 sqlparse==0.5.3
+stripe==11.4.1
 urllib3==1.26.20

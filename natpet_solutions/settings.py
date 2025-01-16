@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+
 import os
 if os.path.isfile('env.py'):
     import env
@@ -24,8 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-q#lnieydpme@t#ixj)!%*=m_)3_+ge&_tc$ji6pt^$zw*&v4_v'
 
+
+
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['8000-rusjamison-natpetsoluti-muxblq7cukq.ws.codeinstitute-ide.net']
 CSRF_TRUSTED_ORIGINS = ['https://8000-rusjamison-natpetsoluti-muxblq7cukq.ws.codeinstitute-ide.net'
@@ -184,3 +187,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CRISPY_TEMPLATE_PACK='bootstrap5'
 
 BASKET_SESSION_ID = 'basket'
+
+#Stripe setting
+import stripe
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
+stripe.api_key = STRIPE_SECRET_KEY

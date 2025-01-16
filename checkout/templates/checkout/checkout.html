@@ -1,0 +1,45 @@
+{% extends 'layouts/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container bootstrap snippets bootdey">
+    <h1 class="text-info">Checkout</h1>
+    <hr>
+    <div class="row">
+        <div class="col-md-7 personal-info">
+            <h3>Order Information</h3>
+
+            <form method="post" class="form-horizontal" action="{% url 'checkout_page' %}">
+                {% csrf_token %}
+                {{ form | crispy}}
+                <p><input type="submit" value="Place order" class="btn btn-info fw-bold"></p>
+            </form>
+        </div>
+        <div class="col-md-5">
+            <div class="order-info">
+                <h3>Your order</h3>
+                <table class="table">
+                   <thead class="bg-info">
+                    <th>Item</th>
+                    <th>Price</th>
+                   </thead>
+                   <tbody>
+                    {% for item in basket %}
+                    <tr>
+                        <td>{{ item.quantity }}x {{ item.product.name }}</td>
+                        <td>€{{ item.total_price }}</td>
+                    </tr>
+                    <tr class="total bg-info">
+                        <td>Total</td>
+                        <td class="num fw-bold">Total: €{{ basket.get_total_price }}</td>
+                    </tr>
+                    {% endfor %}
+                   </tbody>
+                </table>
+                <p></p>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+{% endblock content %}

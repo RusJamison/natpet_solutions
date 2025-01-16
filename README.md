@@ -130,6 +130,12 @@ Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` f
 
 Happy coding!
 
-![Bootstrap 5.2.3 static CSS & JS](https://getbootstrap.com/docs/5.2/getting-started/download/)
-![Bootstrap navbar](https://startbootstrap.com/template/shop-homepage)
+[Bootstrap 5.2.3 static CSS & JS](https://getbootstrap.com/docs/5.2/getting-started/download/)
+
+[Bootstrap navbar](https://startbootstrap.com/template/shop-homepage)
+
+[Stripe setup](https://youtu.be/722A27IoQnk?si=72I3lxqKj7FJav0W)
+
+[Stripe setup](https://www.youtube.com/watch?v=cdE7YiBOo_w)
+
 
