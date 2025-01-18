@@ -8,7 +8,10 @@ from .models import Order, OrderItem
 from basket.basket import Basket
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
+from django.views.generic import TemplateView
 import stripe
+import json
+from django.http import HttpResponse
 
 
 class CheckoutPage(View):
@@ -88,10 +91,38 @@ class PaymentProcessView(View):
         return redirect(session.url, code=303)
 
 
-@method_decorator(csrf_exempt, name='dispatch')
-class PaymentCompletedView(View):
+class PaymentCompletedView(TemplateView):
     template_name = "checkout/completed.html"
-
-@method_decorator(csrf_exempt, name='dispatch')   
-class PaymentCanceledView(View):
+   
+class PaymentCanceledView(TemplateView):
     template_name = "checkout/canceled.html"
+
+@csrf_exempt
+def my_webhook_view(request):
+    payload = request.body
+    sig_header = request.META["HTTP_STRIPE_SIGNATURE"]
+    print("signature: {}".format(sig_header))
+    event = None
+    try:
+        event = stripe.Webhook.construct_event(
+            payload, sig_header, settings.STRIPE_WEBHOOK_SECRET
+        )
+    except ValueError as e:
+        # Invalid payload
+        return HttpResponse(status=400)
+    except stripe.error.SignatureVerificationError as e:
+        # Invalid signature
+        return HttpResponse(status=400)
+    if event.type == "checkout.session.completed":
+        session = event.data.object
+        if session.mode == "payment" and session.payment_status == "paid":
+            try:
+                order = Order.objects.get(id=session.client_reference_id)
+            except Order.DoesNotExist:
+                return HttpResponse(status=404)
+            # mark order as paid
+            order.paid = True
+            order.stripe_id = session.payment_intent
+            order.save()
+    return HttpResponse(status=200)
+
