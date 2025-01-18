@@ -7,7 +7,7 @@ class Order(models.Model):
     """
     An Order placed by a customer. Can have multiple OrderItems.
     """
-
+    stripe_id = models.CharField(max_length=250, blank=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     email = models.EmailField()
