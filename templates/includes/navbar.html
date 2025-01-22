@@ -15,6 +15,11 @@
                 <span class="me-3"><i class="fa-solid fa-user-circle me-2 text-dark"></i><a class="text-dark fw-bolder"
                         href="{% url 'account_profile' %}">My Account</a></span>
 
+                {% if user.is_superuser %}
+                <span class="me-3"><i class="fa-solid fa-user-circle me-2 text-dark"></i><a class="text-dark fw-bolder"
+                        href="{% url 'admin:index' %}">Admin</a></span>
+                {% endif %}
+
                 <span class="me-3"><i class="fa-solid fa-file  text-dark me-2"></i><a class="text-dark fw-bolder"
                         href="{% url 'account_logout' %}">Log Out</a></span>
                 <span class="m3">

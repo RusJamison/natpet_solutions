@@ -11,6 +11,6 @@ class UserAdmin(admin.ModelAdmin):
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ['user', 'address_line_1', 'address_line_2', 'city','phone_number']
-    list_filter = ['user', 'country', 'city']
-    search_fields = ['user__username', 'phone_number', 'city']
+    list_display = ['user', 'address', 'city']
+    list_filter = ['user', 'address', 'city']
+    search_fields = ['user__username', 'city']
