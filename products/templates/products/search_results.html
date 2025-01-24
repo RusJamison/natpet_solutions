@@ -1,0 +1,47 @@
+{% extends 'layouts/base.html' %}
+{% block content%}
+<div class="container">
+    <div class="row ng-scope">
+        <div class="col-md-3 col-md-push-9">
+            <div class="mt-4">
+                <h3 class="headline">
+                    <span>Categories</span>
+                </h3>
+
+                {% for category in categories %}
+                <div class="checkbox">
+                    <a href="{% url 'product_list' %}?category_id={{category.id}}"
+                        class="mt-4">{{category.name}}</a>
+                </div>
+                <br>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-9 col-md-pull-3">
+            <p class="search-results-count">About {{results|length}} result{{result|pluralize}}</p>
+            
+            {% for product in results %}
+            <section class="search-result-item">
+                <a class="image-link" href="#"><img class="image" src="{{product.image.url}}" alt="{{product.name}}">
+                </a>
+                <div class="search-result-item-body">
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <h4 class="search-result-item-heading"><a href="{% url 'product_detail' product.slug%}">{{product.name}}</a></h4>
+                            <p class="info">{{product.model}}</p>
+                            <p class="description">{{product.description}}</p>
+                        </div>
+                        <div class="col-sm-3 text-align-center">
+                            <p class="value3 mt-sm">€ {{product.price}}</p>
+                            <a class="btn btn-primary btn-info btn-sm" href="#">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            {% endfor %}
+
+        </div>
+    </div>
+    </div>
+{% endblock content%}
+    
