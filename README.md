@@ -138,4 +138,5 @@ Happy coding!
 
 [Stripe setup](https://www.youtube.com/watch?v=cdE7YiBOo_w)
 
+[Bootstrap html snippets](http://bootdey.com)
 
