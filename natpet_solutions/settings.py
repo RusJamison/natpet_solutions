@@ -31,9 +31,11 @@ SECRET_KEY = 'django-insecure-q#lnieydpme@t#ixj)!%*=m_)3_+ge&_tc$ji6pt^$zw*&v4_v
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8080-rusjamison-natpetsoluti-muxblq7cukq.ws.codeinstitute-ide.net',
+ALLOWED_HOSTS = [
+'8000-rusjamison-natpetsoluti-muxblq7cukq.ws.codeinstitute-ide.net',
 'natpet-solutions-559b26bc33e6.herokuapp.com'
 ]
+
 CSRF_TRUSTED_ORIGINS = ['https://8000-rusjamison-natpetsoluti-muxblq7cukq.ws.codeinstitute-ide.net',
 'https://natpet-solutions-559b26bc33e6.herokuapp.com'
 ]
@@ -48,7 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #'cloudinary_storage',
+    'cloudinary_storage',
     'django.contrib.sites',
 
      # our apps
@@ -57,7 +59,7 @@ INSTALLED_APPS = [
     'basket',
     'products',
     'checkout',
-    #'cloudinary',
+    'cloudinary',
     'storages',
 
     # third party installed apps
@@ -141,18 +143,24 @@ WSGI_APPLICATION = 'natpet_solutions.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 
-if 'DATABASE_URL' in os.environ:
-    DATABASES = {
-        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
-    }
-else:
-    DATABASES = {
+# if 'DATABASE_URL' in os.environ:
+#     DATABASES = {
+#         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+#     }
+# else:
+    # DATABASES = {
+    #     'default': {
+    #         'ENGINE': 'django.db.backends.sqlite3',
+    #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    #     }
+    # }
+
+DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
