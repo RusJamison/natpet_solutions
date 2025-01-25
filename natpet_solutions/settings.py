@@ -50,7 +50,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'cloudinary_storage',
     'django.contrib.sites',
 
      # our apps
@@ -59,7 +58,6 @@ INSTALLED_APPS = [
     'basket',
     'products',
     'checkout',
-    'cloudinary',
     'storages',
 
     # third party installed apps

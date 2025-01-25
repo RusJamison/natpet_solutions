@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
 from django.core.validators import MinValueValidator
-from cloudinary.models import CloudinaryField
 from django.contrib.postgres.search import SearchVectorField
 
 
@@ -39,12 +38,12 @@ class Product(models.Model):
         "Manufacturer", on_delete=models.CASCADE, related_name="equipments"
     )
     slug = models.CharField(max_length= 255, blank=True)
-    bronchure =CloudinaryField(resource_type="raw", null=True, blank=True, default=None)
+    bronchure =models.ImageField( null=True, blank=True, default=None)
     notes = models.TextField(null=True, blank=True, default=None)
     price = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0.0)])
     stock = models.PositiveIntegerField(default=0)
     categories = models.ManyToManyField(Category, related_name='products', blank=True)
-    image = CloudinaryField(default="default.png")
+    image = models.ImageField(default="default.png")
     sku = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
