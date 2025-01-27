@@ -29,21 +29,24 @@ SECRET_KEY = 'django-insecure-q#lnieydpme@t#ixj)!%*=m_)3_+ge&_tc$ji6pt^$zw*&v4_v
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = 'DEVELOPMENT' in os.environ
+DEBUG = False
 
 ALLOWED_HOSTS = [
 '8000-rusjamison-natpetsoluti-muxblq7cukq.ws.codeinstitute-ide.net',
-'natpet-solutions-559b26bc33e6.herokuapp.com'
+'eu-north-1.console.aws.amazon.com/s3',
+'natpet-solutions-559b26bc33e6.herokuapp.com', 'localhost'
 ]
 
 CSRF_TRUSTED_ORIGINS = ['https://8000-rusjamison-natpetsoluti-muxblq7cukq.ws.codeinstitute-ide.net',
-'https://natpet-solutions-559b26bc33e6.herokuapp.com'
+'https://natpet-solutions-559b26bc33e6.herokuapp.com',
 ]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    #'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -128,7 +131,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
                 'basket.context_processors.basket',
+                
             ],
         },
     },
@@ -194,12 +199,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / 'static'
-# STATICFILES_DIRS = [BASE_DIR / 'static'
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 if 'USE_AWS' in os.environ:
      # Cache control
     AWS_S3_OBJECT_PARAMETERS = {
@@ -208,20 +207,44 @@ if 'USE_AWS' in os.environ:
     }
     # Bucket Config
     AWS_STORAGE_BUCKET_NAME = 'natpet-solutions'
-    AWS_S3_REGION_NAME = 'Europe (Stockholm) eu-north-1'
+    AWS_S3_REGION_NAME = 'eu-north-1'
     AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
     AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 
     # Static and media files
     STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+    #STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
     STATICFILES_LOCATION = 'static'
     DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+    # DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
     MEDIAFILES_LOCATION = 'media'
+    #USE_AWS = False
 
     # Override static and media URLs in production
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
+else:
+    STATIC_URL = 'static/'
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_ROOT = BASE_DIR / 'static'
+# STATICFILES_DIRS = [BASE_DIR / 'static']
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+    
+
+    # STORAGES = {
+    #     'default':{
+    #         'BACKEND':"storages.backends.s3boto3.S3StaticStorage"
+    #     },
+
+    #     'staticfiles':{
+    #         'BACKEND':"storages.backends.s3boto3.S3StaticStorage"
+    #     }
+    # }
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
