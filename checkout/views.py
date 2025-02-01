@@ -125,27 +125,27 @@ def my_webhook_view(request):
     except stripe.error.SignatureVerificationError:
         # Invalid signature
         return HttpResponse(status=400)
-    # if event.type == "checkout.session.completed":
-    #     session = event.data.object
-    #     if session.mode == "payment" and session.payment_status == "paid":
-    #         try:
-    #             order = Order.objects.get(id=session.client_reference_id)
-    #         except Order.DoesNotExist:
-    #             return HttpResponse(status=404)
-    #         # mark order as paid
-    #         order.paid = True
-    #         order.stripe_id = session.payment_intent
-    #         order.save()
-    # return HttpResponse(status=200)
-    if event['type'] == 'payment_intent.succeeded':
-        payment_intent = event['data']['object']
-        order_id = payment_intent['metadata'].get('order_id')
-        if order_id:
-            order = Order.objects.get(id=order_id)
+    if event.type == "checkout.session.completed":
+        session = event.data.object
+        if session.mode == "payment" and session.payment_status == "paid":
+            try:
+                order = Order.objects.get(id=session.client_reference_id)
+            except Order.DoesNotExist:
+                return HttpResponse(status=404)
+            # mark order as paid
             order.paid = True
+            order.stripe_id = session.payment_intent
             order.save()
-
     return HttpResponse(status=200)
+    # if event['type'] == 'payment_intent.succeeded':
+    #     payment_intent = event['data']['object']
+    #     order_id = payment_intent['metadata'].get('order_id')
+    #     if order_id:
+    #         order = Order.objects.get(id=order_id)
+    #         order.paid = True
+    #         order.save()
+
+    # return HttpResponse(status=200)
 
 
 

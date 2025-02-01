@@ -1,0 +1,44 @@
+{% extends 'layouts/base.html' %}
+{% block content %}
+    <!-- order_detail.html -->
+    <div class="container">
+        <div class="row">
+            <!-- Order Info -->
+            <div class="col-md-4">
+                <h1>Order {{ order.id }}</h1>
+                <p><strong>Customer:</strong> {{ order.first_name }} {{ order.last_name }}</p>
+                <p><strong>Address:</strong> {{ order.address }}, {{ order.city }}, {{ order.postal_code }}</p>
+                <p><strong>Order Date:</strong> {{ order.created }}</p>
+                <p><strong>Status:</strong> {% if order.paid %} <span class="text-success">Paid</span> {% else %} <span class="text-danger">Pending</span> {% endif %}</p>
+            </div>
+    
+            <!-- Order Items Table -->
+            <div class="col-md-8">
+                <h2>Order Items</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in order_items %}
+                        <tr>
+                            <td>{{ item.product.name }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>${{ item.price }}</td>
+                            <td>${{ item.get_cost }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <p><strong>Total Cost: ${{ total_cost }}</strong></p>
+            </div>
+        </div>
+    </div>
+    
+{% endblock content %}
+    
