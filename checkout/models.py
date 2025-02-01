@@ -2,6 +2,8 @@ from django.db import models
 from products.models import Product
 from users.models import Profile
 from django.core.validators import MinValueValidator
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 class Order(models.Model):
     """
@@ -17,6 +19,7 @@ class Order(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)
+    user = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
     class Meta:
         ordering = ['-created']
         indexes = [

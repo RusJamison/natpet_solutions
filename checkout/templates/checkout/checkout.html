@@ -29,11 +29,11 @@
                         <td>{{ item.quantity }}x {{ item.product.name }}</td>
                         <td>€{{ item.total_price }}</td>
                     </tr>
+                    {% endfor %}
                     <tr class="total bg-info">
                         <td>Total</td>
                         <td class="num fw-bold">Total: €{{ basket.get_total_price }}</td>
                     </tr>
-                    {% endfor %}
                    </tbody>
                 </table>
                 <p></p>
