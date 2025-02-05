@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Confirmation</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f8f8f8; margin: 0; padding: 0;">
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+            <td align="center" style="padding: 20px 0;">
+                <table role="presentation" width="600px" cellspacing="0" cellpadding="0" border="0" style="background-color: #ffffff; border-radius: 5px; padding: 20px;">
+                    <!-- Header -->
+                    <tr>
+                        <td align="center" style="padding-bottom: 20px;">
+                            <h2 style="color: #333;">Thank You for Your Order</h2>
+                            <p style="color: #555;">A confirmation email has been sent to <strong>{{ request.user.email }}</strong>.</p>
+                        </td>
+                    </tr>
+
+                    <!-- Order Info -->
+                    <tr>
+                        <td>
+                            <h3 style="border-bottom: 2px solid #0DCAF0; padding-bottom: 5px; color: #444;">Order Details</h3>
+                            <p><strong>Order Number:</strong> {{ order.id }}</p>
+                            <p><strong>Order Date:</strong> {{ order.date_created }}</p>
+                        </td>
+                    </tr>
+
+                    <!-- Order Items -->
+                    <tr>
+                        <td>
+                            <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="5" style="border-collapse: collapse; margin-top: 10px;">
+                                <tr style="background-color: #0DCAF0">
+                                    <th align="left" style="padding: 8px;">Product</th>
+                                    <th align="center" style="padding: 8px;">Quantity</th>
+                                    <th align="right" style="padding: 8px;">Price</th>
+                                </tr>
+                                {% for item in order.items.all %}
+                                <tr>
+                                    <td style="border-bottom: 1px solid #ddd; padding: 8px;">{{ item.product.name }} - Size {{ item.product.model }}</td>
+                                    <td align="center" style="border-bottom: 1px solid #ddd; padding: 8px;">{{ item.quantity }}</td>
+                                    <td align="right" style="border-bottom: 1px solid #ddd; padding: 8px;">€{{ item.product.price }}</td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- Delivery Details -->
+                    <tr>
+                        <td>
+                            <h3 style="border-bottom: 2px solid #ddd; padding-bottom: 5px; color: #444;">Delivery Details</h3>
+                            <p><strong>Name:</strong> {{ order.first_name }} {{ order.last_name }}</p>
+                            <p><strong>Address:</strong> {{ order.address }}</p>
+                            {% if order.postcode %}
+                            <p><strong>Postal Code:</strong> {{ order.postcode }}</p>
+                            {% endif %}
+                        </td>
+                    </tr>
+
+                    <!-- Billing Info -->
+                    <tr>
+                        <td>
+                            <h3 style="border-bottom: 2px solid #ddd; padding-bottom: 5px; color: #444;">Billing Information</h3>
+                            <p><strong>Total Cost:</strong> €{{ cost_total }}</p>
+                        </td>
+                    </tr>
+
+                    <!-- Footer -->
+                    <tr>
+                        <td align="center" style="padding-top: 20px; font-size: 12px; color: #777;">
+                            <p>Need help? <a href="mailto:support@example.com" style="color: #007BFF;">Contact Support</a></p>
+                            <p>&copy; {{ year }} Your Company. All rights reserved.</p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+s

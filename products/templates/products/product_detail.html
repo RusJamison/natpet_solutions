@@ -4,35 +4,42 @@
 <section class="py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="row gx-4 gx-lg-5 align-items-center">
-            <div class="img-container"><img src="{{product.image.url}}" class="card-img-top" alt="{{product.name}}" /></div>
+            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="{{product.image.url}}" alt="..." /></div>
             <div class="col-md-6">
                 <div class="small mb-1">SKU: {{ product.sku }}</div>
                 <h3 class="display-5 fw-bolder">{{product.name}}</h3>
-                <h6>Model: {{product.model}}</h6>
-                <div class="fs-5 mb-5 d-flex justify-content-between">
-                    <span class="fw-bold">€{{product.price}}</span>
+                <h6 class=fw-bold>{{product.model}}</h6>
+
+                <div class="fs-5 mb-2 d-flex justify-content-between">
+                    {% if product.discount %}
+                    <p><span class="text-danger"><s>€{{product.price|floatformat:2}}</s></span>
+                        <span class="fw-bold">€{{product.discounted_price|floatformat:2}}</span>
+                    </p>
+                    {% else %}
+                    <p class="fw-bold">€{{product.price|floatformat:2}}
+                    </p>
+                    {% endif %}
                     <span>{{product.stock}} Available</span>
                 </div>
-                <p>
+                <p class="text-sm text-muted">
                     {{product.description}}
                 </p>
 
                 {% if product.notes %}
-                <h5>Other Details</h5>
-                <p>{{product.notes}}</p>
+                <h6>Other Details</h6>
+                <p class="text-sm text-muted">{{product.notes}}</p>
                 {% endif %}
 
                 <div class="">
-                    <p class="price">€{{ product.price }}</p>
-                    <form action="{% url "basket_add" product_id=product.id %}" method="post">
+                    <form action="{% url 'basket_add' product_id=product.id %}" method="post">
                         {% csrf_token %}
                         <div class="form-group">
                             <label for="quantity">Quantity</label>
-                            <input type="number" name="quantity" id="quantity" class="form-control" max="{{product.stock}}" min="1">
-                            <input type="submit" class="btn btn-info" value="Add to cart">
+                            <input type="number" name="quantity" id="quantity" class="form-control"
+                                max="{{product.stock}}">
+                            <input type="submit" class="btn btn-info mt-4" value="Add to cart">
                         </div>
                     </form>
-  
                 </div>
             </div>
         </div>
@@ -46,18 +53,14 @@
         {% for product in related_products %}
         <div class="col-md-12 col-lg-4 mb-4 mb-lg-0">
             <div class="card">
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/4.webp"
-                    class="card-img-top" alt="Laptop" />
+                <img src="{{product.image.url}}" class="card-img-top" alt="Laptop" />
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
                         <p class="small"><a href="#!" class="text-muted"></a></p>
-
                         {% comment %}
                         <p class="small text-danger"><s>€{{product.price}}</s></p>
                         {% endcomment %}
-
                     </div>
-
                     <div class="d-flex justify-content-between mb-3">
                         <h6 class="mb-0">{{product.name|slice:":35"}}</h6>
                     </div>
@@ -70,7 +73,7 @@
                             <p class="text-muted mb-0">Available: <span class="fw-bold">{{product.stock}}</span>
                             </p>
                         </div>
-                    </div>  
+                    </div>
                     <div class="d-flex justify-content-between">
                         <a href="#" class="btn btn-info btn-sm">Add to Basket</a>
                         <a href="{% url 'product_detail' slug=product.slug%}" class="btn btn-dark btn-sm">View

@@ -2,7 +2,8 @@ from decimal import Decimal
 from django.conf import settings
 from basket.models import Basket
 from django.http.request import HttpRequest
-
+from django.utils.timezone import now
+from checkout.models import Coupon
 from products.models import Product
 
 class Basket:
@@ -15,7 +16,7 @@ class Basket:
 
         # save an empty basket in the session
         if not basket:
-            basket = self.session[settings.BASKET_SESSION_ID] = {}
+           basket = self.session[settings.BASKET_SESSION_ID] = {}
 
         self.basket = basket
 
@@ -24,7 +25,7 @@ class Basket:
         product_id = str(product.id)
 
         if product_id not in self.basket:
-            self.basket[product_id] = {'quantity': 0, 'price': str(product.price)}
+            self.basket[product_id] = {'quantity': 0, 'price': str(product.final_price)}
 
         if override_quantity:
             self.basket[product_id]['quantity'] = quantity
@@ -52,7 +53,7 @@ class Basket:
         basket = self.basket.copy()
 
         for product in products:
-            basket[str(product.id)]['product'] = product
+            self.basket[str(product.id)]['product'] = product
 
         for item in basket.values():
             item['price'] = Decimal(item['price'])
@@ -64,8 +65,22 @@ class Basket:
         return sum(item['quantity'] for item in self.basket.values())
     
     def get_total_price(self):
-        """calculate total price of all items in basket"""
-        return sum(Decimal(item['price']) * item['quantity'] for item in self.basket.values())
+        """Calculate total price of all items in basket"""
+        total = sum(Decimal(item['price']) * item['quantity'] for item in self.basket.values())
+
+        # Apply discount if a valid coupon exists
+        coupon_code = self.session.get("coupon_code")
+        if coupon_code:
+            try:
+                coupon = Coupon.objects.get(code=coupon_code, active=True)
+                if coupon.valid_from <= now() <= coupon.valid_to:
+                    discount = total * (coupon.discount_percentage / 100)
+                    total -= discount
+            except Coupon.DoesNotExist:
+                return total
+            
+        return total
+
     
     def clear(self):
         """clear the basket"""

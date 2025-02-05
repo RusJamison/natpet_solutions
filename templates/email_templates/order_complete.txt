@@ -1,0 +1,23 @@
+**Thank You**  
+
+Your order information is below..  
+
+### Order Info:  
+- **Order Number:** {{ order.id }}  
+- **Order Date:** {{ order.date_created }}  
+
+### Order Details:  
+{% for item in order.items.all %}  
+- **{{ item.product.name }} **  
+- {{ item.quantity }} @ €{{ item.product.price }} each  
+{% endfor %}  
+
+### Delivering To:  
+- **Full Name:** {{ order.first_name }} {{ order.last_name}}  
+- **Address 1:** {{ order.address }}  
+ - **Postal Code:** {{ order.postcode }}  
+
+### Billing Info:  
+- ** Order Total {{ cost_total }}
+
+*(Content cut off in the original message—let me know if you need this section too!)*  

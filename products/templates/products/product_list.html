@@ -53,7 +53,14 @@
                     </div>
                     <div class="card-body">
                         <small class="card-title fw-bold">{{product.name|slice:":25"}}</small>
-                        <p>€ {{product.price}}</p>
+                        {% if product.discount %}
+                        <div class="d-flex justify-content-between"><span class="text-danger"><s>€{{product.price|floatformat:2}}</s></span>
+                            <span class="fw-bold">€{{product.discounted_price|floatformat:2}}</span>
+                        </div>
+                        {% else %}
+                        <p class="fw-bold">€{{product.price|floatformat:2}}
+                        </p>
+                        {% endif %}
                         <div class="d-flex justify-content-between">
                             <form action="{% url 'add_to_basket_product' product.id %}" method="post">
                                 {% csrf_token %}

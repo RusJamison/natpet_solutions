@@ -20,7 +20,14 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <small class="card-title fw-bold">{{product.name|slice:":25"}}</small>
-                    <p>€ {{product.price}}</p>
+                    {% if product.discount %}
+                    <p><small class="text-danger"><s>€{{product.price|floatformat:2}}</s></small>
+                        <small class="fw-bold">€{{product.discounted_price|floatformat:2}}</small>
+                    </p>
+                    {% else %}
+                    <p class="fw-bold">€{{product.price|floatformat:2}}
+                    </p>
+                    {% endif %}
                 </div>
                 <p>{{product.description|slice:":45"}} ...</p>
                 <div class="d-flex justify-content-between">

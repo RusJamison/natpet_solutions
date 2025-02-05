@@ -30,12 +30,14 @@ SECRET_KEY = 'django-insecure-q#lnieydpme@t#ixj)!%*=m_)3_+ge&_tc$ji6pt^$zw*&v4_v
 
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = 'DEVELOPMENT' in os.environ
+#DEBUG = 'DEVELOPMENT' in os.environ
 DEBUG = True
 
 ALLOWED_HOSTS = [
 '8000-rusjamison-natpetsoluti-muxblq7cukq.ws.codeinstitute-ide.net',
 'eu-north-1.console.aws.amazon.com/s3',
-'natpet-solutions-559b26bc33e6.herokuapp.com', 'localhost'
+'natpet-solutions-559b26bc33e6.herokuapp.com', 'localhost',
+'127.0.0.1'
 ]
 
 CSRF_TRUSTED_ORIGINS = ['https://8000-rusjamison-natpetsoluti-muxblq7cukq.ws.codeinstitute-ide.net',
@@ -88,6 +90,35 @@ ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
+
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_USE_SSL = False
+# EMAIL_HOST_USER = 'natpetinfo@gmail.com'
+# EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+
+# if 'DEVELOPMENT' in os.environ:
+#     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#     DEFAULT_FROM_EMAIL = 'natpetsolutions@example.com'
+# else:
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_USE_TLS = True
+# EMAIL_PORT = 587
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+# EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+# DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Change this for other providers
+EMAIL_PORT = os.environ.get('EMAIL_PORT')  # 465 for SSL, 587 for TLS
+EMAIL_USE_TLS = True  # Use True for TLS, False for SSL
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')  # Use an app password if using Gmail
+DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL')
 
 # SOCIALACCOUNT_PROVIDERS = {
 #     'google': {

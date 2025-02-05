@@ -5,7 +5,6 @@
 <div class="container bootstrap snippets bootdey">
     <h1 class="text-info">Checkout</h1>
     <hr>
-
     <form method="post" class="form-horizontal" action="{% url 'checkout_page' %}">
         <div class="row">
             <div class="col-md-7 personal-info">
@@ -25,21 +24,54 @@
                             {% for item in basket %}
                             <tr>
                                 <td>{{ item.quantity }}x {{ item.product.name }}</td>
-                                <td>€{{ item.total_price }}</td>
+                                <td>€{{ item.total_price|floatformat:2  }}</td>
                             </tr>
                             {% endfor %}
                             <tr class="total bg-info">
                                 <td>Total</td>
-                                <td class="num fw-bold">Total: €{{ basket.get_total_price }}</td>
+                                <td class="num fw-bold">€{{ basket.get_total_price|floatformat:2  }}</td>
                             </tr>
                         </tbody>
                     </table>
-                    <p><input type="submit" value="Place order" class="btn btn-info fw-bold"></p>
+                    <h4></h4>
+
+                    {% if request.session.coupon_code %}
+                    <p>Coupon Applied: <span class="fw-bold">{{ request.session.coupon_code }}</span></p>
+                    {% else %}
+                    <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">
+                        Add a Coupon Code
+                    </button>
+                    {% endif %}
+
+                    <p class="mt-2"><input type="submit" value="Place order" class="btn btn-info fw-bold"></p>
+                    <!-- Modal -->
+                    <p></p>
                 </div>
             </div>
         </div>
     </form>
-
 </div>
 <hr>
+<div class="modal fade mt-2 mb-2" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" class="form-inline" action="{% url 'apply_coupon' %}">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Apply A Coupon Code</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {% csrf_token %}
+                    {{coupon_form|crispy}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-sm btn-info">Save Coupon</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock content %}

@@ -1,0 +1,6 @@
+Hello, {{ user.first_name }}!
+
+We are excited to have you on board.
+
+Best Regards,
+The Team

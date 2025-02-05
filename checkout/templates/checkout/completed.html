@@ -1,1 +1,11 @@
-<h3>Payment successful</h3>
+{% extends 'layouts/base.html' %}
+{% block content %}
+    <div class="d-flex">
+        <div class="alert alert-success" role="alert">
+            Your order has been successfully placed.
+            You will receive a confirmation email shortly.
+        </div>
+    </div>
+    <a href="{% url 'product_list' %}" class="btn btn-primary">Continue Shopping</a>
+{% endblock content %}
+    
