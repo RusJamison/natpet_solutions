@@ -36,7 +36,7 @@
                                 </tr>
                                 {% for item in order.items.all %}
                                 <tr>
-                                    <td style="border-bottom: 1px solid #ddd; padding: 8px;">{{ item.product.name }} - Size {{ item.product.model }}</td>
+                                    <td style="border-bottom: 1px solid #ddd; padding: 8px;">{{ item.product.name }} - Model {{ item.product.model }}</td>
                                     <td align="center" style="border-bottom: 1px solid #ddd; padding: 8px;">{{ item.quantity }}</td>
                                     <td align="right" style="border-bottom: 1px solid #ddd; padding: 8px;">€{{ item.product.price }}</td>
                                 </tr>
