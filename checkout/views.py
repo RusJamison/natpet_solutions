@@ -162,7 +162,7 @@ class PaymentProcessView(LoginRequiredMixin, View):
             subject="Sample Email",
             to_email=request.user.email,
             template_name="order_complete",
-            context={"order": order, "user": request.user},
+            context={"order": order, "user": request.user, "cost_total": cost_total},
         )
 
         # redirect to Stripe payment form
