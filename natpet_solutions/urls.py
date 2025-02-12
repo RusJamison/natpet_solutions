@@ -30,4 +30,6 @@ urlpatterns = [
     path('basket/', include('basket.urls')),
     path('checkout/', include('checkout.urls')),
     path("search/", FullTextSearch.as_view(), name="search_items"),
+    path('robots.txt/', RobotsViews.as_view()),
+    path('sitemap.xml/', SiteMapView.as_view()),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

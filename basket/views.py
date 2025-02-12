@@ -55,9 +55,14 @@ class RemoveBasketProduct(View):
 
 
 class BasketDetailView(View):
+    template_name = "basket/basket.html"
+    title = "Basket"
+    
     def get(self, request):
         basket = Basket(request)
-        return render(request, "basket/basket.html", {"basket": basket})
+        return render(
+            request, self.template_name, {"Basket": basket, "title": self.title}
+        )
 
 class UpdateItemQuantity(View):
     def post(self, request, product_id):

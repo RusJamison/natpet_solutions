@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /basket/
+Disallow: /checkout/
+Allow: /
+
+Sitemap: https://natpet-solutions-559b26bc33e6.herokuapp.com/sitemap.xml

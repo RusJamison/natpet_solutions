@@ -19,7 +19,7 @@ from django.http import HttpResponse
 class CheckoutPage(LoginRequiredMixin, View):
     template_name = "checkout/checkout.html"
     success_template_name = "checkout/checkout_success.html"
-
+    title = "Checkout Page"
     def get(self, request):
         """Handle GET requests."""
         user_profile = self.request.user.customer_profile
@@ -36,7 +36,12 @@ class CheckoutPage(LoginRequiredMixin, View):
         return render(
             request,
             self.template_name,
-            {"basket": basket, "form": form, "coupon_form": coupon_form},
+            {
+                "basket": basket,
+                "form": form,
+                "coupon_form": coupon_form,
+                "title": self.title,
+            },
         )
 
     def post(self, request):
@@ -58,7 +63,11 @@ class CheckoutPage(LoginRequiredMixin, View):
             request.session["order_id"] = order.id  # Store the order ID in the session
             basket.clear()  # Clear the basket after creating the order
             return redirect(reverse("process_payment"))
-        return render(request, self.template_name, {"basket": basket, "form": form})
+        return render(
+            request,
+            self.template_name,
+            {"basket": basket, "form": form, "title": self.title},
+        )
 
 
 class CouponApplyView(LoginRequiredMixin, View):
@@ -81,6 +90,7 @@ class CouponApplyView(LoginRequiredMixin, View):
 
 class PaymentProcessView(LoginRequiredMixin, View):
     template_name = "checkout/process.html"
+    title = "Process Payment"
 
     def get(self, request):
         """Handle GET requests to display the payment page."""
@@ -95,7 +105,9 @@ class PaymentProcessView(LoginRequiredMixin, View):
 
         print("Order Details: ", order_details)
         return render(
-            request, self.template_name, {"order": order, "total": order_details}
+            request,
+            self.template_name,
+            {"order": order, "total": order_details, "title": self.title},
         )
 
     def post(self, request):
@@ -171,11 +183,21 @@ class PaymentProcessView(LoginRequiredMixin, View):
 
 class PaymentCompletedView(LoginRequiredMixin, TemplateView):
     template_name = "checkout/completed.html"
+    title = "Payment Completed"
 
-
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = self.title
+        return context
+    
 class PaymentCanceledView(LoginRequiredMixin, TemplateView):
     template_name = "checkout/canceled.html"
+    title = "Payment Canceled"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = self.title
+        return context
 
 # Using Django
 @csrf_exempt

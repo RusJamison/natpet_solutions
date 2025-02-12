@@ -2600,20 +2600,6 @@ var slice = [].slice,
       return Transformation.methods.indexOf(Util.camelCase(name)) >= 0;
     };
 
-
-    /**
-     * Delegate to the parent (up the call chain) to produce HTML
-     * @function Transformation#toHtml
-     * @return {string} HTML representation of the parent if possible.
-     * @example
-     * tag = cloudinary.ImageTag.new("sample", {cloud_name: "demo"})
-     * // ImageTag {name: "img", publicId: "sample"}
-     * tag.toHtml()
-     * // <img src="http://res.cloudinary.com/demo/image/upload/sample">
-     * tag.transformation().crop("fit").width(300).toHtml()
-     * // <img src="http://res.cloudinary.com/demo/image/upload/c_fit,w_300/sample">
-     */
-
     TransformationBase.prototype.toHtml = function() {
       var ref;
       return (ref = this.getParent()) != null ? typeof ref.toHtml === "function" ? ref.toHtml() : void 0 : void 0;

@@ -14,6 +14,7 @@ class ProductListView(ListView):
     context_object_name = "products"
     ordering = ["-created_at"]
     queryset = Product.objects.all()
+    title = "Products"
 
     def get_context_data(self, **kwargs):
         # filter out products using the category
@@ -50,6 +51,7 @@ class ProductListView(ListView):
         context["pagination_range"] = page_numbers[
             max(0, current_page - 3) : current_page + 2
         ]
+        context['title'] = self.title
         return context
 
 
@@ -57,6 +59,7 @@ class ProductDetailView(DetailView):
     model = Product
     template_name = "products/product_detail.html"
     context_object_name = "product"
+    title = "Product Detail"
 
     def get_object(self, queryset=None):
         """
@@ -74,4 +77,5 @@ class ProductDetailView(DetailView):
             categories__in=self.object.categories.all()
         ).exclude(id=self.object.id)[:4]
         context["form"] = BasketAddProductForm()
+        context['title'] = self.get_object().name
         return context
