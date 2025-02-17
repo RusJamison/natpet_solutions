@@ -4,13 +4,13 @@ from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views import View
-from django.views.generics import TemplateView
-
+from django.views.generic import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from products.models import Category
 from products.utils import search_all_models
 
 
-class FullTextSearch(View):
+class FullTextSearch(View, LoginRequiredMixin):
     template_name = "products/search_results.html"
     title = "Search Results"
 

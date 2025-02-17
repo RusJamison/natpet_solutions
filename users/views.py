@@ -8,6 +8,7 @@ from django.db.models import Sum, F, DecimalField
 from django.db.models.functions import Coalesce
 from django.views.generic import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 # Create your views here.
@@ -38,8 +39,10 @@ class UserProfileView(View):
         )
 
 
+# Create your views here.
 class UserOrdersView(LoginRequiredMixin, View):
     title = "User Orders"
+    items_per_page = 10
 
     def get(self, request):
         orders_with_total_price = (
@@ -53,15 +56,33 @@ class UserOrdersView(LoginRequiredMixin, View):
             .filter(user=request.user)
             .all()
         )
+
+        paginator = Paginator(orders_with_total_price, self.items_per_page)
+
+        page = request.GET.get("page", 1)
+
+        try:
+            orders = paginator.page(page)
+        except PageNotAnInteger:
+            orders = paginator.page(1)
+        except EmptyPage:
+            orders = paginator.page(paginator.num_pages)
+
+        # Pagination range logic
+        page_numbers = list(paginator.page_range)
+        current_page = orders.number
+        pagination_range = page_numbers[max(0, current_page - 3) : current_page + 2]
+
         return render(
             request,
             "users/user_orders.html",
             {
-                "orders": orders_with_total_price,
-                "title":self.title,
+                "page_obj": orders,
+                "paginator": paginator,
+                "pagination_range": pagination_range,
+                "title": self.title,
             },
         )
-
 
 class OrderDetailView(LoginRequiredMixin, DetailView):
     model = Order
