@@ -43,7 +43,7 @@ class Product(models.Model):
     # bronchure =CloudinaryField(resource_type="raw", null=True, blank=True, default=None)
     notes = models.TextField(null=True, blank=True, default=None)
     price = models.DecimalField(
-        max_digits=10, decimal_places=2, validators=[MinValueValidator(0.0)]
+        max_digits=50, decimal_places=2, validators=[MinValueValidator(0.0)]
     )
     stock = models.PositiveIntegerField(default=0)
     categories = models.ManyToManyField(Category, related_name="products", blank=True)

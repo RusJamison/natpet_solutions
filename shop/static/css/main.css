@@ -787,7 +787,7 @@ shop-index__section {
 }
 
 .img-container {
-  height: 200px;
+  height: auto;
   /* Adjust this value as needed */
   overflow: hidden;
   /* Prevent the image from overflowing */
@@ -817,7 +817,7 @@ shop-index__section {
 
 .product-list-item {
   width: 30%;
-  height: 300px;
+  height: 900px;
 }
 
 @media screen and (max-width:1200px) {
@@ -930,7 +930,7 @@ shop-index__section {
 }
 
 .card {
-    width: 30%;
+    width: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -939,16 +939,20 @@ shop-index__section {
 
 .image-container {
     width: 30%;
-    height: auto; /* Fixed height for uniformity */
-    overflow: hidden; /* Prevents image overflow */
+    height: 450px; /* Fixed height for uniformity */
+    overflow: hidden;/*  Prevents image overflow */
 }
 
 .card-img-top {
     width: 30%;
-    height: auto;
+    height: 450;
     object-fit: cover; /* Ensures image covers the container without distortion */
 }
 
 .card-body {
     flex-grow: 1; /* Ensures consistent height */
+}
+
+.container {
+  height:990px
 }

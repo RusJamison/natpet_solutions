@@ -42,7 +42,7 @@ class Migration(migrations.Migration):
                 ('description', models.TextField()),
                 ('slug', models.CharField(blank=True, max_length=255)),
                 ('notes', models.TextField(blank=True, default=None, null=True)),
-                ('price', models.DecimalField(decimal_places=2, max_digits=10, validators=[django.core.validators.MinValueValidator(0.0)])),
+                ('price', models.DecimalField(decimal_places=2, max_digits=20, validators=[django.core.validators.MinValueValidator(0.0)])),
                 ('stock', models.PositiveIntegerField(default=0)),
                 ('sku', models.CharField(max_length=255)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
