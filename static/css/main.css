@@ -665,11 +665,12 @@ shop-index__section {
 }
 
 .img-container{
-  height: 600px; /* Adjust this value as needed */
+  height: auto; /* Adjust this value as needed */
   overflow: hidden; /* Prevent the image from overflowing */
   display: flex;
   align-items: center; /* Center the image vertically */
   justify-content: center;/* Optional: Rounded corners */
+  border-radius: 10px;
 }
 
 .imge-container img {
@@ -681,7 +682,7 @@ shop-index__section {
 .card-img-top{
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 .card{
   height: 400px;

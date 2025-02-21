@@ -801,24 +801,20 @@ shop-index__section {
 .imge-container img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   /* Ensures the image covers the container */
 }
 
 .card-img-top {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .card {
-  height: 400px;
+  height: 600px;
 }
 
-.product-list-item {
-  width: 30%;
-  height: 900px;
-}
 
 @media screen and (max-width:1200px) {
   .card {
@@ -938,15 +934,15 @@ shop-index__section {
 }
 
 .image-container {
-    width: 30%;
-    height: 450px; /* Fixed height for uniformity */
-    overflow: hidden;/*  Prevents image overflow */
+    width: 100%;
+    height: 100%; /* Fixed height for uniformity */
+    object-fit: contain;/*  Prevents image overflow */
 }
 
 .card-img-top {
-    width: 30%;
-    height: 450;
-    object-fit: cover; /* Ensures image covers the container without distortion */
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Ensures image covers the container without distortion */
 }
 
 .card-body {
