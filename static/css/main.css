@@ -700,7 +700,7 @@ shop-index__section {
 
 @media screen and (max-width:992px) {
   .card{
-    width: 50%;
+    width: 40%;
   }
 }
 
