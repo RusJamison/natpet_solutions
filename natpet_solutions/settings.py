@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-q#lnieydpme@t#ixj)!%*=m_)3_+ge&_tc$ji6pt^$zw*&v4_v'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 
 
@@ -121,6 +121,8 @@ EMAIL_USE_SSL = False
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')  # Use an app password if using Gmail
 DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL')
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 
 # SOCIALACCOUNT_PROVIDERS = {
 #     'google': {
