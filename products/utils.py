@@ -3,13 +3,10 @@ from products.models import Category, Manufacturer, Product
 
 
 def search_all_models(query):
+    results = Product.objects.filter(
+        name__icontains=query
+    ) | Product.objects.filter(
+        description__icontains=query
+    )
 
-    vector = SearchVector('name', 'description')
-
-    print("searching for {}".format(query))
-
-    query = SearchQuery(query)
-
-    results = Product.objects.annotate(search=vector).filter(search=query)
-
-    return results
+    return results.distinct()

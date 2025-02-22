@@ -97,7 +97,73 @@ The Relationship diagram for the DBMS consists of the following tables: Manufact
 
 ### Existing Features
 
-#### Header:
+
+-  **F01 Navigation Bar**
+
+      The navigation bar is a crucial element of the e-commerce site, providing users with easy access to various sections. The following features are included namely:
+      - **Home :** A link to the homepage showcasing featured products
+      - **Product :** A quick access to products
+      - **Search Bar :** A prominent search feature enabling users to quickly find specific products.
+      - **About :** Information about the company, its mission, and values.
+      - **Contact :** Contact information, including email and phone for quick request for equipment full details.
+      - **Account :** A user account section for login, registration, order history, and profile management.
+      - **Basket :** A quick-access basket icon showing the number of items in the basket.
+
+      Landing Page Navbar
+
+      ![Navbar Full](documentation/images/landing-page-navbar.png)
+
+      Navbar Full Signed in as Admin
+
+      ![Navbar Full](documentation/images/admin-navbar.png)
+
+      Navbar Full Signed in as User
+
+      ![Navbar Full Signed in](documentation/images/login-user-navbar.png)
+
+      Navbar Burger Signed-In Menu
+
+      ![Navbar Burger](documentation/images/burger-navbar.png)
+
+-  **F02 Landing page image**
+
+      The landing page is user-friendly, visually appealing, and informative, ensuring that visitors can easily navigate through the offerings of the medical equipment supply shop. It aims to establish trust and credibility while providing a seamless shopping experience. The start button service as a quick way for the visitor to view products. 
+
+      ![Landing Area](documentation/images/landing-page.png)
+
+-  **F03 Product page image**
+
+      The product page is a crucial component of this online shopping experience, it presents detailed information about medical equipment, helping customers make informed purchasing decisions. This description covers the essential features and functionalities that should be included in the product detailed view.
+
+      ![Product Area](documentation/images/product-page.png)
+
+      Diagnostic Equipment Products Category Page
+
+      ![Diagnostic Equipment Product Area](documentation/images/diagnostic-equipment.png)
+
+      Life Support Equipment Products Category Page
+
+      ![Life Support Equipment Product Area](documentation/images/life-support-equipment.png)
+
+      Patient Care Equipment Products Category Page
+
+      ![Patient Care Equipment Product Area](documentation/images/patient-care-equipment.png)
+
+      Surgical Equipment Products Category Page
+
+      ![Surgical Equipment Product Area](documentation/images/surgical-equipment.png)
+
+      Therapeutic Equipment Products Category Page
+
+      ![Therapeutic Equipment Product Area](documentation/images/therapeutic-equipment.png)
+
+      Infection Control Equipment Products Category Page
+
+      ![Infection Control Equipment Product Area](documentation/images/infection-control-equipment.png)
+
+      Mobility Aids Equipment Products Category Page
+
+      ![Mobility Aids Equipment Product Area](documentation/images/mobility-aids.png)
 
 
 

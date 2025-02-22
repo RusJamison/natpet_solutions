@@ -52,7 +52,7 @@
                         <img src="{{product.image.url}}" class="card-img-top" alt="{{product.name}}">
                     </div>
                     <div class="card-body">
-                        <small class="card-title fw-bold">{{product.name|slice:":25"}}</small>
+                        <small class="card-title fw-bold">{{product.name|slice:":50"}}</small>
                         {% if product.discount %}
                         <div class="d-flex justify-content-between"><span class="text-danger"><s>€{{product.price|floatformat:2}}</s></span>
                             <span class="fw-bold">€{{product.discounted_price|floatformat:2}}</span>
