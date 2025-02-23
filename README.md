@@ -165,6 +165,91 @@ The Relationship diagram for the DBMS consists of the following tables: Manufact
 
       ![Mobility Aids Equipment Product Area](documentation/images/mobility-aids.png)
 
+-  **F04 Sign Up**
+
+      In the digital age, ensuring secure and reliable user registration is crucial for e-commerce platforms, especially in sensitive sectors like medical equipment supply.The focus is on implementing a user registration system that requires both a username and an email address, with mandatory email verification to ensure the authenticity of the user's email before granting access to the platform. By requiring users to confirm their email addresses, the system enhances security and reduces the risk of fraudulent accounts.
+
+      User sign Up
+
+      ![User Sign Up](documentation/images/sign-up.png)
+
+      User Verification of their email
+
+      ![User Email Verification](documentation/images/sign-in.png)
+
+      Site Admin Verify User
+
+      ![User Signed-in After Verification](documentation/images/signed-in.png)
+
+-  **F05 Equipment Search**
+
+      In the realm of e-commerce, particularly for specialized sectors like medical equipment supply, the search functionality plays a pivotal role in enhancing user experience and driving sales. The ability to search efficiently allows users to quickly find the products they need, which is crucial in a field where time and precision are paramount. Filtering and Sorting Options: Users can refine their search results based on various parameters such as category, price, and specifications.
+
+      Body Text Search
+
+      ![Prodect Search Body Text](documentation/images/search-result.png)
+
+      Filtering by Price
+
+      ![Product Searc By Price](documentation/images/price-search.png)
+
+      Search by Category
+
+      ![Product Search By Category](documentation/images/category-search.png)
+
+-  **F06 Relationship Diagrams For DBMS**
+
+      To support the above search functionality in a Django e-commerce application for a medical equipment supply shop, a well-structured database is essential. Below is a simplified relationship diagram that outlines the key entities and their relationships within the database management system.
+
+      ![DATABASE Relationship](documentation/relationship-diagrams/relationship-diagram.png)
+
+-  **F07 Django Admin / store owner**
+
+      The Admin add products, create product categories, product description, models, sku, product manufacturers, products images, price and give users permissions.
+      **Adding Products**
+      - Once logged into the admin interface:
+      - **Navigate to the Products section :** Click on "Products" in the admin dashboard.
+      - **Add a new product :** Click on the "Add Product" button. Fill in the product details:
+        - **Name :** Enter the name of the medical equipment.
+        - **Description :** Provide a detailed description of the product.
+        - **Model :** Set the model of the product.
+        - **Slug :** Generate slug.
+        - **Manufacturer :** Set the manufacturer of the product.
+        - **Image :** Upload an image of the product.
+        - **Price :** Set the price of the product.
+        - **SKU :** Set the sku of the product.
+        - **Discount :** Set the discount of the product.
+
+      ![Django Admin](documentation/images/adding-products.png)
+
+
+
+### Features which could be implemented in the future
+
+-   __Search Autocomplete__
+    
+    Implement a search bar with autocomplete suggestions to help users find products quickly
+
+-   __Detailed Product Descriptions__
+
+    Include specifications, usage instructions, and safety information for each product.
+
+-   __Video Demonstrations__
+
+    Provide video tutorials or demonstrations for complex medical equipment.
+
+-   __Blog and Articles__
+
+    Create a section for informative articles and blog posts about medical equipment, usage tips, and industry news.
+
+-   __Webinars and Workshops__
+
+    Host online webinars or workshops to educate customers on product usage and best practices.
+
+-   __Proposed Features Outcome__
+    The proposed features aim to create a robust and user-friendly e-commerce platform for medical equipment supplies. By implementing these enhancements, the shop can improve customer satisfaction, streamline operations, and maintain compliance with industry standards, ultimately leading to increased sales and customer loyalty.
+
+
 
 
 
