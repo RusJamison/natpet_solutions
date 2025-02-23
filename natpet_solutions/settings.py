@@ -24,8 +24,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = os.environ.get('SECRET_KEY')
-SECRET_KEY = 'django-insecure-q#lnieydpme@t#ixj)!%*=m_)3_+ge&_tc$ji6pt^$zw*&v4_v'
+SECRET_KEY = os.environ.get('SECRET_KEY', '')
+#SECRET_KEY = 'django-insecure-q#lnieydpme@t#ixj)!%*=m_)3_+ge&_tc$ji6pt^$zw*&v4_v'
 
 
 
@@ -291,7 +291,13 @@ CRISPY_TEMPLATE_PACK='bootstrap5'
 BASKET_SESSION_ID = 'basket'
 
 #Stripe setting
+# import stripe
+# STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
+# stripe.api_key = STRIPE_SECRET_KEY
+# STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET')
+
 import stripe
-STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
-stripe.api_key = STRIPE_SECRET_KEY
-STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
+STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
+#stripe.api_key = STRIPE_SECRET_KEY
+STRIPE_WEBHOOK_SECRET = os.getenv('STRIPE_WEBHOOK_SECRET', '')
