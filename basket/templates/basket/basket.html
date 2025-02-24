@@ -18,7 +18,7 @@
             {% with item.product as product %}
             <tr>
                 <td><a href="{% url 'product_detail' slug=product.slug %}">
-                        <img src="{{ product.image.url }}" alt="{{product.name}}" class="img-fluid" width="50" />
+                        <img src="{{ product.image.url }}" alt="{{product.name}}" class="img-fluid" width="50"/>
                     </a></td>
                 <td>{{product.name}}</td>
                 <td>
