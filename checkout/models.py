@@ -132,5 +132,16 @@ class Coupon(models.Model):
 
     def __str__(self):
         return f"{self.code} - {self.discount_percentage}%"
+    
+class CouponUsage(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    coupon = models.ForeignKey(Coupon, on_delete=models.CASCADE)
+    used_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Coupon usage for {self.user.username} using {self.coupon.code}"
+    
+    class Meta:
+        unique_together = ["user", "coupon"]
 
 

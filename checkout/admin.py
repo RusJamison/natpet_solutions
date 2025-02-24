@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Order, OrderItem, Coupon
+from .models import CouponUsage, Order, OrderItem, Coupon
 
 
 # Register your models here.
@@ -39,6 +39,11 @@ class CouponAdmin(admin.ModelAdmin):
     list_display = ("code", "discount_percentage", "valid_from", "valid_to", "active")
     search_fields = ("code",)
     list_filter = ("active", "valid_from", "valid_to")
+
+@admin.register(CouponUsage)
+class CouponUsageAdmin(admin.ModelAdmin):
+    list_display = ("user", "coupon", "used_at")
+    list_filter = ("user", "coupon", "used_at")
 
 
 

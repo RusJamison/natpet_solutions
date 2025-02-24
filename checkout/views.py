@@ -8,7 +8,7 @@ from django.contrib import messages
 
 from natpet_solutions.utils import send_template_email
 from .forms import OrderCreateForm, CouponApplyForm
-from .models import Coupon, Order, OrderItem
+from .models import Coupon, CouponUsage, Order, OrderItem
 from basket.basket import Basket
 import stripe
 from django.views.decorators.csrf import csrf_exempt
@@ -78,9 +78,18 @@ class CouponApplyView(LoginRequiredMixin, View):
             code = form.cleaned_data.get("code")
             try:
                 coupon = Coupon.objects.get(code=code, active=True)
+                coupon_usage = CouponUsage.objects.filter(coupon=coupon, user = request.user).first()
                 if not coupon.is_valid():
-                    return HttpResponse("This coupon has expired or is not valid.")
+                    messages.warning(request,"This coupon has expired or is not valid.")
+                    return redirect(reverse("checkout_page"))
+                
+                if coupon_usage is not None:
+                    messages.error(request,"You have already used this coupon.")
+                    return redirect(reverse("checkout_page"))
+
                 request.session["coupon_code"] = code
+                coupon_usage = CouponUsage(user=request.user, coupon=coupon)
+                coupon_usage.save()
                 messages.success(request, "Coupon Code Applied Successfully.")
                 return redirect(reverse("checkout_page"))
             except Coupon.DoesNotExist:
