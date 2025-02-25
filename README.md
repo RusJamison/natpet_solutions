@@ -265,7 +265,8 @@ The Relationship diagram for the DBMS consists of the following tables: Manufact
 
 
 
-
+### Previous DJANGO SECRET_KEY
+The previously exposed value SECRET_KEY is no longer in use and has been replaced with a new value.
 
 
 [Bootstrap 5.2.3 static CSS & JS](https://getbootstrap.com/docs/5.2/getting-started/download/)
