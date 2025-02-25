@@ -12,7 +12,7 @@
                     <tr>
                         <td align="center" style="padding-bottom: 20px;">
                             <h2 style="color: #333;">Thank You for Your Order</h2>
-                            <p style="color: #555;">We are pleased to confirm the receipt of your order <strong>{{ request.user.email }}</strong>.</p>
+                            <p style="color: #555;">A confirmation email has been sent to <strong>{{ request.user.email }}</strong>.</p>
                         </td>
                     </tr>
 
@@ -36,7 +36,7 @@
                                 </tr>
                                 {% for item in order.items.all %}
                                 <tr>
-                                    <td style="border-bottom: 1px solid #ddd; padding: 8px;">{{ item.product.name }} - Model {{ item.product.model }}</td>
+                                    <td style="border-bottom: 1px solid #ddd; padding: 8px;">{{ item.product.name }} - Size {{ item.product.model }}</td>
                                     <td align="center" style="border-bottom: 1px solid #ddd; padding: 8px;">{{ item.quantity }}</td>
                                     <td align="right" style="border-bottom: 1px solid #ddd; padding: 8px;">€{{ item.product.price }}</td>
                                 </tr>
@@ -61,7 +61,8 @@
                     <tr>
                         <td>
                             <h3 style="border-bottom: 2px solid #ddd; padding-bottom: 5px; color: #444;">Billing Information</h3>
-                            <p><strong>Total Cost:</strong> €{{ cost_total }}</p>
+                            <p><strong>Discount:</strong> €{{ order.discount }}</p>
+                            <p><strong>Total Cost:</strong> €{{ order.total_amount_paid }}</p>
                         </td>
                     </tr>
 

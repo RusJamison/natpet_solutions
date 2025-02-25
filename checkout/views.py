@@ -20,6 +20,7 @@ class CheckoutPage(LoginRequiredMixin, View):
     template_name = "checkout/checkout.html"
     success_template_name = "checkout/checkout_success.html"
     title = "Checkout Page"
+
     def get(self, request):
         """Handle GET requests."""
         user_profile = self.request.user.customer_profile
@@ -50,6 +51,7 @@ class CheckoutPage(LoginRequiredMixin, View):
         form = OrderCreateForm(request.POST)
         print("Order created {}".format(form.is_valid()))
         if form.is_valid():
+            print("Session: {}".format(basket))
             order = form.save(commit=False)
             order.user = self.request.user
             order.save()
@@ -198,7 +200,8 @@ class PaymentCompletedView(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         context["title"] = self.title
         return context
-    
+
+
 class PaymentCanceledView(LoginRequiredMixin, TemplateView):
     template_name = "checkout/canceled.html"
     title = "Payment Canceled"
@@ -207,6 +210,7 @@ class PaymentCanceledView(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         context["title"] = self.title
         return context
+
 
 # Using Django
 @csrf_exempt

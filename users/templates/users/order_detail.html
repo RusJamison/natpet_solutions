@@ -17,7 +17,7 @@
                 <h2>Order Items</h2>
                 <table class="table table-striped">
                     <thead>
-                        <tr>
+                        <tr class="bg-info">
                             <th>Product</th>
                             <th>Quantity</th>
                             <th>Price</th>
@@ -29,13 +29,20 @@
                         <tr>
                             <td>{{ item.product.name }}</td>
                             <td>{{ item.quantity }}</td>
-                            <td>${{ item.price }}</td>
-                            <td>${{ item.get_cost }}</td>
+                            <td>€{{ item.price }}</td>
+                            <td>€{{ item.get_cost }}</td>
                         </tr>
                         {% endfor %}
+                        <tr>
+                            <td colspan="3" class="text-right bg-info"><strong>Discount:</strong></td>
+                            <td class="fw-bold">€{{ order.discount }}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="text-right bg-info"><strong>Total Cost:</strong></td>
+                            <td class="fw-bold">€{{ total_cost }}</td>
+                        </tr>
                     </tbody>
                 </table>
-                <p><strong>Total Cost: ${{ total_cost }}</strong></p>
             </div>
         </div>
         <div class="col">

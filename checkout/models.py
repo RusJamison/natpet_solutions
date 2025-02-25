@@ -22,6 +22,8 @@ class Order(models.Model):
     paid = models.BooleanField(default=False)
     user = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
     date_created = models.DateTimeField(auto_now_add=True)
+    discount = models.DecimalField(max_digits=11, decimal_places=2, default=0.00)
+    total_amount_paid = models.DecimalField(max_digits=11, decimal_places=2, default=0.00)
 
     class Meta:
         ordering = ["-created"]
@@ -47,8 +49,16 @@ class Order(models.Model):
                 discount = total * (Decimal(coupon.discount_percentage) / 100)
                 discounted_total = total - discount
 
+            self.total_amount_paid = discounted_total
+            self.discount = discount
+
+            self.save()
+
             return {'sub_total': total, 'discount': discount, 'total': discounted_total}
+            
+        self.total_amount_paid = total
         
+        self.save()
         return total
 
 
