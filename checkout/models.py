@@ -48,17 +48,7 @@ class Order(models.Model):
             if coupon and coupon.valid_from <= now() <= coupon.valid_to:
                 discount = total * (Decimal(coupon.discount_percentage) / 100)
                 discounted_total = total - discount
-
-            self.total_amount_paid = discounted_total
-            self.discount = discount
-
-            self.save()
-
-            return {'sub_total': total, 'discount': discount, 'total': discounted_total}
-            
-        self.total_amount_paid = total
-        
-        self.save()
+                return {'sub_total': total, 'discount': discount, 'total': discounted_total}
         return total
 
 
@@ -142,7 +132,7 @@ class Coupon(models.Model):
 
     def __str__(self):
         return f"{self.code} - {self.discount_percentage}%"
-    
+
 class CouponUsage(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     coupon = models.ForeignKey(Coupon, on_delete=models.CASCADE)
@@ -153,5 +143,3 @@ class CouponUsage(models.Model):
     
     class Meta:
         unique_together = ["user", "coupon"]
-
-

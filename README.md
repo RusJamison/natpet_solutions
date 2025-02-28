@@ -249,6 +249,119 @@ The Relationship diagram for the DBMS consists of the following tables: Manufact
 -   __Proposed Features Outcome__
     The proposed features aim to create a robust and user-friendly e-commerce platform for medical equipment supplies. By implementing these enhancements, the shop can improve customer satisfaction, streamline operations, and maintain compliance with industry standards, ultimately leading to increased sales and customer loyalty.
 
+## Design
+
+-   ### Wireframe
+
+      The wireframe showing how to 
+
+      <details>
+      <summary>Add Equipment Wireframes</summary>
+
+      ![Desktop Wireframes](documentation/wireframes/add-equipment.png)
+      </details>
+
+## Planning
+
+### User Stories and Kanban board can be accessed here
+    
+   [User Story](https://github.com/users/RusJamison/projects/3)
+
+
+## Technologies Used
+
+
+### Languages Used
+
+-   [HTML5](https://en.wikipedia.org/wiki/HTML5)
+-   [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
+-   [Jquery](https://jquery.com/)
+-   [Python](https://www.python.org/)
+
+### Frameworks, Libraries & Programs Used
+
+-   [Google Fonts:](https://fonts.google.com/) used for the Lato font
+-   [Font Awesome:](https://fontawesome.com/) was used to add icons for aesthetic and UX purposes.
+-   [Git:](https://git-scm.com/) Version control by utilising the Gitpod terminal to commit to Git and Push to 
+           GitHub.
+-   [GitHub:](https://github.com/) Respository for the project code after being pushed from Git. 
+             GitHub was also used for User Stories (GitHub Issues) and tracking them on a Kanban board.
+-   [dbdiagram.io](https://dbdiagram.io/home) Entity Relationship diagrams for the application data model
+-   [Amazon Web Services](https://aws.amazon.com//) image storage
+-   [Summernote](https://pypi.org/project/django-summernote/) used for reports
+-   [Django allauth](https://django-allauth.readthedocs.io/en/latest/index.html) used for account registration and authentication
+-   [Django crispy forms](https://django-crispy-forms.readthedocs.io/en/latest/) used for forms
+-   [Balsamiq:](https://balsamiq.com/) Create the wireframes during the design process.
+-   [Django](https://www.djangoproject.com/) Framework to support rapid and secure development of the application
+-   [Bootstrap](https://getbootstrap.com/) Used to build responsive web pages
+-   [Gunicorn](https://gunicorn.org/) Assist Web Server to run Django on Heroku
+-   [dj_database_url](https://pypi.org/project/dj-database-url/) library for database urls to connect to the Postgres db
+-   [psycopg2](https://pypi.org/project/psycopg2/) database adapter used to support Postgres db
+
+## Testing
+
+### Validator Testing 
+
+- [HTML Validator](https://validator.w3.org/)
+
+    - As this project uses Django templates the html has been validated using url
+
+    - Results for validate by URL with errors
+      - <details>
+        <summary>Validation URL check - Summary</summary>
+
+        ![Validation URL check - Summary](documentation/testing/validation/html-errors.png)
+      </details>
+    
+    - Results for validate by URL with errors cleared
+      - <details>
+        <summary>Validation URL check without errors - Summary</summary>
+
+        ![Validation URL check without errors - Summary](documentation/testing/validation/html-with-no-errors.png)
+      </details>
+
+  - [CSS Validator](https://jigsaw.w3.org/css-validator/)
+
+    - Results for validate by URL
+      - <details>
+        <summary>Validation URL check - Summary</summary>
+
+        ![Validation URL check - Summary](documentation/testing/validation/css-validation.png)
+      </details>
+
+    - [Python Validator](https://pep8ci.herokuapp.com/)
+
+  <details>
+    <summary>project urls.py validation results</summary>
+
+    ![Project urls.py](documentation/testing/validation/core-urls-py.png)
+  </details>
+  <details>
+    <summary>project views.py validation results</summary>
+
+    ![Project views.py](documentation/testing/validation/core-views-py.png)
+  </details>
+  <details>
+    <summary>Equipment application urls.py validation results</summary>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### Lighthouse Testing
+
+  -   Lighthouse testing results
+
+      ![Lighthouse Check](documentation/testing/results/lighthouse.png)
 
 
 
@@ -269,6 +382,81 @@ The Relationship diagram for the DBMS consists of the following tables: Manufact
 The previously exposed value SECRET_KEY is no longer in use and has been replaced with a new value.
 
 
+
+## Deployment
+
+Steps below show how to clone this project repository, configure and deploy the application to Heroku.
+
+### How to Clone the Repository 
+
+- Go to the https://github.com/RusJamison/natpet_solutions repository on Github
+- Click the "Code" button and copy the https link
+- On the terminal navigate to directory where you want to place the clone
+
+### Create Application and Postgres DB on Heroku
+
+- Log in to Heroku at https://heroku.com
+- Click the Create new app button on the Heroku dashboard
+- On the Create New App page, enter a unique name for the application and select region.
+- Then click Create app, and then click on the Resources tab.
+- In the Add-ons search bar enter "Postgres" and select "Heroku Postgres" from the list 
+- Then click the "Submit Order Form" button
+- Click on Settings on the Application Configuration page and click on the "Reveal Config Vars" button
+- Check the DATABASE_URL has been automatically set up
+- Add a new Config Var called SECRET_KEY and assign it a value
+  - DATABASES = {'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))}
+
+  - SECRET_KEY = os.environ.get('SECRET_KEY')
+
+- Make migration and migrate in VSCode
+- Commit and push any local changes to GitHub.
+- Make sure the project requirements.txt file is up to date with all necessary supporting files
+
+### Configure Amazon Web Services S3 to host images used by the application
+
+- Click the provided link to sign up for Amazon Web Services.
+- Provide name and email address and choose a password
+- Open the env.py file and set the value of the Amazon Web Services S3 AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY and USE_AWS
+- In Heroku click on Settings and click on the "Reveal Config Vars" button.
+- Add a new Config Var called 'AWS_ACCESS_KEY_ID' and assign it the value copied from the Amazon Web Services dashboard
+- Add a new Config Var called 'AWS_SECRET_ACCESS_KEY' and assign it the value copied from the Amazon Web Services dashboard
+- Add a new Config Var called 'USE_AWS' and assign it the boolean value 
+
+
+### Connect the Heroku app to the GitHub repository
+
+- On Heroku dashboard click on the Deploy tab. 
+- Select GitHub as the Deployment Method 
+- Enter the name of the github repository you want to deploy
+- Choose manual deploy
+- The live link for this project is - https://natpet-solutions-559b26bc33e6.herokuapp.com/
+
+
+- Set DEBUG to False. Git add, commit and push the code to GitHub.
+- Ensure requirements.txt is up to date using the command : pip3 freeze --local > requirements.txt
+- In the Heroku Config Vars for the application delete this environment variable :  DISABLE_COLLECTSTATIC
+- Click on deploy to manual branch
+
+#### The live link to the application can be found here - [Natpet Solutions Medical Equipment Supplies](https://natpet-solutions-559b26bc33e6.herokuapp.com/) 
+
+
+## Credits
+
+    The Code Institute Learning Platform, Learning Management System (LMS) was the main basis of my codes for this project. A number of my codes is based from the Boutique Ado.
+
+    Thanks to Lewis who took over from Amy Richardson. Thanks for the resources Lewis shared with us.This project ia based on all modules we did during the course of the year so thanks to Amy Richardson for the resources she gave us during the course of the three earlier projects. 
+
+    Thanks to my mentor Brian Macharia for his mentoring sessions, guidance, patience, encouragement and constant motivation throughout the project.
+
+    Thanks to the tutors whom I get help and support during the project. Special mentioning Alan and Rebecca, Sarah for their knowledge sharing skills, patience and quick response.
+
+
+### Content
+-  Special thanks to the following learning platforms I used their resources
+   - Udemy
+   - Linkedin Learning
+   - Coursera
+
 [Bootstrap 5.2.3 static CSS & JS](https://getbootstrap.com/docs/5.2/getting-started/download/)
 
 [Bootstrap navbar](https://startbootstrap.com/template/shop-homepage)
@@ -278,4 +466,82 @@ The previously exposed value SECRET_KEY is no longer in use and has been replace
 [Stripe setup](https://www.youtube.com/watch?v=cdE7YiBOo_w)
 
 [Bootstrap html snippets](http://bootdey.com)
+
+   Object Oriented Programming in Python by Estefania Cassingena Navone (https://www.udemy.com/course/python-object-oriented-programming-oop/learn/lecture/12356228?start=150#overview)
+
+    Python Masterclass 2024: Build 24 Real World Python Projects by Ashutosh Pawar (https://www.udemy.com/course/python-masterclass-course/learn/lecture/37365778?start=105#overview)
+
+    100 Days of Code: The Complete Python Pro Bootcamp
+    by Dr. Angela Yu (https://www.udemy.com/course/100-days-of-code/learn/lecture/20628484?start=60#overview)
+
+    Python 3: Deep Dive (Part 3 - Dictionaries, Sets, JSON)
+    by Dr. Fred Baptiste (https://www.udemy.com/course/python-3-deep-dive-part-3/learn/lecture/12049204?start=615#overview)
+
+    Python Mega Course: Learn Python in 60 Days, Build 20 Apps by Ardit Sulce
+    (https://www.udemy.com/course/the-python-mega-course/learn/lecture/34597268?start=240#overview)
+
+    README by Elaine Broche(https://github.com/elainebroche-dev/pf4-wayfarers-guided-hikes)
+
+    Tools for Writing, Sizing, and Validating User Stories including Well-Defined Acceptance Criteria and Gherkin Scenarios
+    by Tom and Angela Hathaway (https://www.udemy.com/course/writing-effective-user-stories/learn/lecture/)
+
+    Generate Dynamically PDF files using Python and ReportLab
+    by Hugo Ferro (https://www.udemy.com/course/python-reportlab-from-beginner-to-winner/learn)
+
+    Master Python Django 5.0: Learn Django (Core + Advanced Concepts), Behind-the-Scenes, Projects, Boost Career With AI
+    by Taranjot Singh (https://www.udemy.com/course/django-complete-course/learn)
+
+    Every Python Programmer Must Have This Skill!!
+    by Coding Gears | Train Your Brain (https://www.udemy.com/course/python-unit-testing-fundamentals/learn)
+
+    Take the next step in your Python development by leveraging the power of PostgreSQL and databases!
+    by Jose Salvatierra (https://www.udemy.com/course/complete-python-postgresql-database-course/learn)
+
+    Learn the entire technology stack to create beautiful and responsive websites with Python and Django!
+    by Jose Portilla (https://www.udemy.com/course/django-and-python-full-stack-developer-masterclass/learn)
+
+    Build 3 stunning websites, learn Back and Front End Web Development, deploy your site with HTML5, CSS3 and Bootstrap 4
+    by Nick Walter (https://www.udemy.com/course/django-3-make-websites-with-python-tutorial-beginner-learn-bootstrap/learn/)
+
+    Django Masterclass : Build 9 Real World Django Projects
+    by Ashutosh Pawar (https://www.udemy.com/course/django-course/learn/)
+
+    Master Django and Create Python Web Applications in Simple Steps
+    by Bharath Thippireddy (https://www.udemy.com/course/django-for-python-developers/learn)
+
+    Learn SQL From Scratch Using MySQL Databases, A Complete SQL Course For Beginners
+    by Ashutosh Pawar (https://www.udemy.com/course/sqlcourse/learn/) 
+
+    Master Bootstrap 4 and build 5 real world themes while learning HTML5 semantics & CSS3
+    by Brad Traversy (https://www.udemy.com/course/bootstrap-4-from-scratch-with-5-projects/learn)
+
+    Learn Python and build & deploy a real estate application using the Django framework & PostgreSQL
+    by Brad Traversy (https://www.udemy.com/course/python-django-dev-to-deployment/learn/)
+
+    Learn the basics of Balsamiq Wireframes, an invaluable tool for creating rapid user interface wireframes.
+    by Leon Barnard (https://www.udemy.com/course/getting-started-with-balsamiq-wireframes/learn)
+
+    Unit Testing in Django by Leticia Portella (https://www.linkedin.com/learning/unit-testing-in-django)
+
+    Advanced Django Project: Build High-Traffic Websites with Django by Ryan Mitchell (https://www.linkedin.com/learning/advanced-django-project-build-high-traffic-websites-with-django)
+
+    Django Essential Training by Leticia Portella (https://www.linkedin.com/learning/django-essential-training) 
+
+    Full Stack Web Development with Flask by Christian Hur (https://www.linkedin.com/learning/full-stack-web-development-with-flask)
+
+    Learning Django by  Caleb Smith (https://www.linkedin.com/learning/learning-django-2)
+
+    Start the UX Design Process: Empathize, Define, and Ideate by Google (https://www.coursera.org/learn/start-ux-design-process)
+
+    Django Web Framework by Meta (https://www.coursera.org/learn/django-web-framework/)
+
+    Back-End Developer Capstone by Meta (https://www.coursera.org/learn/back-end-developer-capstone)
+
+    Building Web Applications in Django by University of Michigan (https://www.coursera.org/learn/django-build-web-apps)
+
+    Python Functions, Files, and Dictionaries by University of Michigan (https://www.coursera.org/learn/python-functions-files-dictionaries)
+
+    The Power of Object-Oriented Programming by University of Michigan (https://www.coursera.org/learn/the-power-of-object-oriented-programming) 
+
+    (https://www.pexels.com/) 
 

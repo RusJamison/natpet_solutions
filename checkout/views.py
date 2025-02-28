@@ -113,6 +113,12 @@ class PaymentProcessView(LoginRequiredMixin, View):
         order = get_object_or_404(Order, id=order_id)
 
         order_details = order.get_total_cost(coupon_code)
+        
+        # Update order details with discount information
+        if isinstance(order_details, dict):
+            order.total_amount_paid = order_details.get('total')
+            order.discount = order_details.get('discount')
+            order.save()
 
         print("Order Details: ", order_details)
         return render(
@@ -182,7 +188,7 @@ class PaymentProcessView(LoginRequiredMixin, View):
             del request.session["order_id"]
 
         send_template_email(
-            subject="Your Order Has Been Completed",
+            subject="Sample Email",
             to_email=request.user.email,
             template_name="order_complete",
             context={"order": order, "user": request.user, "cost_total": cost_total},
