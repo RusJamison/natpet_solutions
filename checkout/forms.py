@@ -16,7 +16,7 @@ class CouponApplyForm(forms.Form):
         try:
             coupon = Coupon.objects.get(code=code, active=True)
             if not coupon.is_valid():
-                raise forms.ValidationError("This coupon has expired or is not valid.")
+                raise forms.ValidationError("Coupon expired or not valid.")
         except Coupon.DoesNotExist:
             raise forms.ValidationError("Invalid coupon code.")
         return code

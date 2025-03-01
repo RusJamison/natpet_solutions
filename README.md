@@ -222,6 +222,26 @@ The Relationship diagram for the DBMS consists of the following tables: Manufact
 
       ![Django Admin](documentation/images/adding-products.png)
 
+-  **F08 Footer**
+
+      The footer is a crucial part of the website, serving as a navigational aid and a source of essential information for users. It enhances user experience and builds trust with potential customers by providing easy access to important links and company details. The footer include facebook business page link and Mailchimp subscription
+
+      ![Add Unscheduled Work Order View](documentation/images/footer.png)
+
+
+-  **F08 Facebook**
+
+      Connecting with customers on social media is essential for engagement. This section include links to:Facebook Business Page
+
+      ![Add Unscheduled Work Order View](documentation/images/natpet-facebook-page.png)
+
+-  **F10 Mailchimp**
+
+      Encouraging users to subscribe to a newsletter can help keep them informed about new products, promotions, and company news. This section should include:
+      - Email Input Field: A field for users to enter their email address.
+      - Subscribe Button: A button to submit the email for subscription.
+
+      ![Add Unscheduled Work Order View](documentation/images/mailchimp.png)
 
 
 ### Features which could be implemented in the future
@@ -253,12 +273,18 @@ The Relationship diagram for the DBMS consists of the following tables: Manufact
 
 -   ### Wireframe
 
-      The wireframe showing how to 
+      The wireframe showing the landing page and the product page
 
       <details>
-      <summary>Add Equipment Wireframes</summary>
+      <summary>Landing Page Wireframes</summary>
 
-      ![Desktop Wireframes](documentation/wireframes/add-equipment.png)
+      ![Desktop Wireframes](documentation/wireframes/wireframe-landing-page.png)
+      </details>
+
+      <details>
+      <summary>Shop Product Page Wireframes</summary>
+
+      ![Desktop Wireframes](documentation/wireframes/wireframe-product-page.png)
       </details>
 
 ## Planning

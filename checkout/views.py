@@ -62,7 +62,7 @@ class CheckoutPage(LoginRequiredMixin, View):
                     price=item["price"],
                     quantity=item["quantity"],
                 )
-            request.session["order_id"] = order.id  # Store the order ID in the session
+            request.session["order_id"] = order.id  # Store order ID in session
             basket.clear()  # Clear the basket after creating the order
             return redirect(reverse("process_payment"))
         return render(
@@ -80,13 +80,14 @@ class CouponApplyView(LoginRequiredMixin, View):
             code = form.cleaned_data.get("code")
             try:
                 coupon = Coupon.objects.get(code=code, active=True)
-                coupon_usage = CouponUsage.objects.filter(coupon=coupon, user = request.user).first()
+                coupon_usage = CouponUsage.objects.filter(coupon=coupon, user=request.user).first()
                 if not coupon.is_valid():
-                    messages.warning(request,"This coupon has expired or is not valid.")
+                    messages.warning(request,
+                                     "This coupon expired or is not valid.")
                     return redirect(reverse("checkout_page"))
-                
                 if coupon_usage is not None:
-                    messages.error(request,"You have already used this coupon.")
+                    messages.error(request,
+                                   "You have already used this coupon.")
                     return redirect(reverse("checkout_page"))
 
                 request.session["coupon_code"] = code
@@ -113,7 +114,6 @@ class PaymentProcessView(LoginRequiredMixin, View):
         order = get_object_or_404(Order, id=order_id)
 
         order_details = order.get_total_cost(coupon_code)
-        
         # Update order details with discount information
         if isinstance(order_details, dict):
             order.total_amount_paid = order_details.get('total')
@@ -191,7 +191,8 @@ class PaymentProcessView(LoginRequiredMixin, View):
             subject="Sample Email",
             to_email=request.user.email,
             template_name="order_complete",
-            context={"order": order, "user": request.user, "cost_total": cost_total},
+            context={"order": order, "user": request.user,
+                     "cost_total": cost_total},
         )
 
         # redirect to Stripe payment form

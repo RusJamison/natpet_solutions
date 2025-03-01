@@ -20,10 +20,13 @@ class Order(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)
-    user = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, blank=True, null=True,
+                             on_delete=models.CASCADE)
     date_created = models.DateTimeField(auto_now_add=True)
-    discount = models.DecimalField(max_digits=11, decimal_places=2, default=0.00)
-    total_amount_paid = models.DecimalField(max_digits=11, decimal_places=2, default=0.00)
+    discount = models.DecimalField(max_digits=11, decimal_places=2,
+                                   default=0.00)
+    total_amount_paid = models.DecimalField(max_digits=11, decimal_places=2,
+                                            default=0.00)
 
     class Meta:
         ordering = ["-created"]
@@ -35,7 +38,10 @@ class Order(models.Model):
         return f"Order {self.id}"
 
     def get_total_cost(self, coupon_code=None):
-        """Calculate the total cost, applying a discount if a valid coupon is provided."""
+        """
+        Calculate the total cost, applying a discount
+        if a valid coupon is provided.
+        """
         total = sum(item.get_cost() for item in self.items.all())
         discount = 0
 
@@ -43,17 +49,19 @@ class Order(models.Model):
             try:
                 coupon = Coupon.objects.get(code=coupon_code, active=True)
             except Coupon.DoesNotExist:
-                return total  # Return total without discount if coupon doesn't exist
+                return total  # Total without discount if coupon doesn't exist
 
             if coupon and coupon.valid_from <= now() <= coupon.valid_to:
                 discount = total * (Decimal(coupon.discount_percentage) / 100)
                 discounted_total = total - discount
-                return {'sub_total': total, 'discount': discount, 'total': discounted_total}
+                return {'sub_total': total, 'discount': discount,
+                        'total': discounted_total}
         return total
 
 
 class OrderItem(models.Model):
-    order = models.ForeignKey(Order, related_name="items", on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, related_name="items",
+                              on_delete=models.CASCADE)
     product = models.ForeignKey(
         Product, related_name="order_items", on_delete=models.CASCADE
     )
@@ -79,7 +87,8 @@ class Payment(models.Model):
         ("refunded", "Refunded"),
     )
 
-    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="payments")
+    order = models.ForeignKey(Order, on_delete=models.CASCADE,
+                              related_name="payments")
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     status = models.CharField(
         max_length=20, choices=PAYMENT_STATUS, default="initiated"
@@ -133,6 +142,7 @@ class Coupon(models.Model):
     def __str__(self):
         return f"{self.code} - {self.discount_percentage}%"
 
+
 class CouponUsage(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     coupon = models.ForeignKey(Coupon, on_delete=models.CASCADE)
@@ -140,6 +150,6 @@ class CouponUsage(models.Model):
 
     def __str__(self):
         return f"Coupon usage for {self.user.username} using {self.coupon.code}"
-    
+
     class Meta:
         unique_together = ["user", "coupon"]

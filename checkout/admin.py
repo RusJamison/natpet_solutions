@@ -36,14 +36,13 @@ class OrderItemAdmin(admin.ModelAdmin):
 
 @admin.register(Coupon)
 class CouponAdmin(admin.ModelAdmin):
-    list_display = ("code", "discount_percentage", "valid_from", "valid_to", "active")
+    list_display = ("code", "discount_percentage", "valid_from",
+                    "valid_to", "active")
     search_fields = ("code",)
     list_filter = ("active", "valid_from", "valid_to")
+
 
 @admin.register(CouponUsage)
 class CouponUsageAdmin(admin.ModelAdmin):
     list_display = ("user", "coupon", "used_at")
     list_filter = ("user", "coupon", "used_at")
-
-
-

@@ -6,17 +6,18 @@ from django.utils.timezone import now
 from checkout.models import Coupon
 from products.models import Product
 
+
 class Basket:
-    def __init__(self, request:HttpRequest):
+    def __init__(self, request: HttpRequest):
         self.request = request
         self.session = request.session
 
-        # get the basket from the session or create a new one if it doesn't exist
+        # get the basket from session or create a new one if it doesn't exist
         basket = self.session.get(settings.BASKET_SESSION_ID)
 
         # save an empty basket in the session
         if not basket:
-           basket = self.session[settings.BASKET_SESSION_ID] = {}
+            basket = self.session[settings.BASKET_SESSION_ID] = {}
 
         self.basket = basket
 
@@ -25,7 +26,8 @@ class Basket:
         product_id = str(product.id)
 
         if product_id not in self.basket:
-            self.basket[product_id] = {'quantity': 0, 'price': str(product.final_price)}
+            self.basket[product_id] = {'quantity': 0,
+                                       'price': str(product.final_price)}
 
         if override_quantity:
             self.basket[product_id]['quantity'] = quantity
@@ -38,7 +40,7 @@ class Basket:
         """mark session as modified to make sure it is saved"""
         self.session.modified = True
 
-    def remove(self,product_id):
+    def remove(self, product_id):
         """Remove an item from the basket"""
         product_id = str(product_id)
         if product_id in self.basket:
@@ -63,7 +65,7 @@ class Basket:
     def __len__(self):
         """count all items in basket"""
         return sum(item['quantity'] for item in self.basket.values())
-    
+
     def get_total_price(self):
         """Calculate total price of all items in basket"""
         total = sum(Decimal(item['price']) * item['quantity'] for item in self.basket.values())
@@ -78,10 +80,8 @@ class Basket:
                     total -= discount
             except Coupon.DoesNotExist:
                 return total
-            
         return total
 
-    
     def clear(self):
         """clear the basket"""
         del self.session[settings.BASKET_SESSION_ID]

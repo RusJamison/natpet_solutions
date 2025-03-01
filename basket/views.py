@@ -22,7 +22,8 @@ class AddToBasketView(View):
                 quantity=cd["quantity"],
                 override_quantity=cd["override"],
             )
-        messages.success(request, f"{product.name} has been added to your basket.")
+        messages.success(request,
+                         f"{product.name} has been added to your basket.")
         return redirect("basket")
 
 
@@ -32,12 +33,9 @@ class AddToBasketProductView(View):
     def post(self, request, product_id):
         basket = Basket(request)
         product = get_object_or_404(Product, id=product_id)
-        print("adding product {} to basket".format(product))
-        print(
-            "current session: {}".format(request.session.get(settings.BASKET_SESSION_ID))
-        )
         basket.add(product, 1, override_quantity=False)
-        messages.success(request, f"{product.name} has been added to your basket.")
+        messages.success(request,
+                         f"{product.name} has been added to your basket.")
         return redirect(request.META["HTTP_REFERER"])
 
 
@@ -45,24 +43,23 @@ class RemoveBasketProduct(View):
     def post(self, request, product_id):
         basket = Basket(request)
         product = get_object_or_404(Product, id=product_id)
-        print("removing product {}".format(product))
-        print(
-            "current session: {}".format(request.session.get(settings.BASKET_SESSION_ID))
-        )
         basket.remove(product.id)
-        messages.success(request, f"{product.name} has been removed from your basket.")
+        messages.success(request,
+                         f"{product.name} has been removed from your basket.")
         return redirect("basket")
 
 
 class BasketDetailView(View):
     template_name = "basket/basket.html"
     title = "Basket"
-    
+
     def get(self, request):
         basket = Basket(request)
         return render(
-            request, self.template_name, {"Basket": basket, "title": self.title}
+            request,
+            self.template_name, {"Basket": basket, "title": self.title}
         )
+
 
 class UpdateItemQuantity(View):
     def post(self, request, product_id):
@@ -70,10 +67,7 @@ class UpdateItemQuantity(View):
         product = get_object_or_404(Product, id=product_id)
         quantity = int(request.POST.get("quantity"))
         override_quantity = True
-        print("updating quantity of product {} to {}".format(product, quantity))
-        print(
-            "current session: {}".format(request.session.get(settings.BASKET_SESSION_ID))
-        )
         basket.add(product, quantity, override_quantity=override_quantity)
-        messages.success(request, f"Quantity of {product.name} has been updated.")
+        messages.success(request,
+                         f"Quantity of {product.name} has been updated.")
         return redirect("basket")
