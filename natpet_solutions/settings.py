@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     'products',
     'checkout',
     'storages',
+    'admin_dashboard',
 
     # third party installed apps
    'allauth',

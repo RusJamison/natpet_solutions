@@ -68,7 +68,8 @@ class Basket:
 
     def get_total_price(self):
         """Calculate total price of all items in basket"""
-        total = sum(Decimal(item['price']) * item['quantity'] for item in self.basket.values())
+        total = (sum(Decimal(item['price']) * 
+                 item['quantity'] for item in self.basket.values()))
 
         # Apply discount if a valid coupon exists
         coupon_code = self.session.get("coupon_code")

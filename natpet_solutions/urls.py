@@ -32,4 +32,5 @@ urlpatterns = [
     path("search/", FullTextSearch.as_view(), name="search_items"),
     path('robots.txt/', RobotsViews.as_view()),
     path('sitemap.xml/', SiteMapView.as_view()),
+    path("admin_dashboard/", include("admin_dashboard.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,62 @@
+{% extends 'admin_dashboard/dashboard_base.html' %}
+
+{% block dash_content %}
+<div class="container my-5">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>{{ category.name }}</h2>
+        <div>
+            <a href="{% url 'admin_category_list' %}" class="btn btn-secondary">
+                <i class="bi bi-arrow-left me-2"></i> Back to List
+            </a>
+        </div>
+    </div>
+
+    <!-- category Details and Form -->
+    <div class="">
+        <div class="row g-0">
+            <!-- category Image -->
+
+            <!-- Form -->
+            <div class="col">
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row">
+                            <!-- Name -->
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">{{ update_form.name.label }}</label>
+                                {{ update_form.name }}
+                                {% for error in update_form.name.errors %}
+                                    <small class="text-danger">{{ error }}</small>
+                                {% endfor %}
+                            </div>
+                           
+                        <!-- Metadata -->
+                        <p class="text-muted"><small><strong>Created:</strong> {{ category.created_at|date:"F d, Y" }}</small></p>
+                        <p class="text-muted"><small><strong>Updated:</strong> {{ category.updated_at|date:"F d, Y" }}</small></p>
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-info">
+                            <i class="bi bi-save me-2"></i> Update category
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Button (Optional) -->
+
+{% comment %}
+<div class="mt-4">
+    <form method="post" action="{% url 'category_delete' category.id %}" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this category?');">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">
+            <i class="bi bi-trash me-2"></i> Delete category
+        </button>
+    </form>
+</div>
+{% endcomment %}
+    
+</div>
+{% endblock %}

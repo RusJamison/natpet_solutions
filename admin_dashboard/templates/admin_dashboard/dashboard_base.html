@@ -1,0 +1,50 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="sidebar col-3" >
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a href="{% url 'admin_index' %}" class="nav-link text-info fw-bold active">
+                   Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'admin_product_list' %}" class="nav-link text-info fw-bold">
+                    Products
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'admin_category_list' %}" class="nav-link text-info fw-bold">
+                    Categories
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'admin_manufacturer_list' %}" class="nav-link text-info fw-bold">
+                    Manufacturers
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'admin_order_list' %}" class="nav-link text-info fw-bold">
+                    Orders
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="{% url 'admin_coupon_list' %}" class="nav-link text-info fw-bold">
+                    Coupons
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-9">
+        <div class="container my-2">
+            
+            {% block dash_content %}
+                
+            {% endblock dash_content %}
+                
+        </div>
+    </div>
+</div>
+{% endblock content %}

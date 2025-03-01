@@ -1,0 +1,142 @@
+{% extends 'admin_dashboard/dashboard_base.html' %}
+
+{% block dash_content %}
+<div class="container my-5">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>{{ product.name }} ({{ product.model }})</h2>
+        <div>
+            <a href="{% url 'admin_product_list' %}" class="btn btn-secondary">
+                <i class="bi bi-arrow-left me-2"></i> Back to List
+            </a>
+        </div>
+    </div>
+
+    <!-- Product Details and Form -->
+    <div class="">
+        <div class="row g-0">
+            <!-- Product Image -->
+
+            <!-- Form -->
+            <div class="col">
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row">
+                            <!-- Name -->
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">{{ update_form.name.label }}</label>
+                                {{ update_form.name }}
+                                {% for error in update_form.name.errors %}
+                                    <small class="text-danger">{{ error }}</small>
+                                {% endfor %}
+                            </div>
+                            <!-- Model -->
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">{{ update_form.model.label }}</label>
+                                {{ update_form.model }}
+                                {% for error in update_form.model.errors %}
+                                    <small class="text-danger">{{ error }}</small>
+                                {% endfor %}
+                            </div>
+                            <!-- SKU -->
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">{{ update_form.sku.label }}</label>
+                                {{ update_form.sku }}
+                                {% for error in update_form.sku.errors %}
+                                    <small class="text-danger">{{ error }}</small>
+                                {% endfor %}
+                            </div>
+                            <!-- Price -->
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">{{ update_form.price.label }}</label>
+                                {{ update_form.price }}
+                                {% for error in update_form.price.errors %}
+                                    <small class="text-danger">{{ error }}</small>
+                                {% endfor %}
+                            </div>
+                            <!-- Discount -->
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">{{ update_form.discount.label }}</label>
+                                {{ update_form.discount }}
+                                {% for error in update_form.discount.errors %}
+                                    <small class="text-danger">{{ error }}</small>
+                                {% endfor %}
+                            </div>
+                            <!-- Stock -->
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">{{ update_form.stock.label }}</label>
+                                {{ update_form.stock }}
+                                {% for error in update_form.stock.errors %}
+                                    <small class="text-danger">{{ error }}</small>
+                                {% endfor %}
+                            </div>
+                            <!-- Manufacturer -->
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">{{ update_form.manufacturer.label }}</label>
+                                {{ update_form.manufacturer }}
+                                {% for error in update_form.manufacturer.errors %}
+                                    <small class="text-danger">{{ error }}</small>
+                                {% endfor %}
+                            </div>
+                            <!-- Categories -->
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">{{ update_form.categories.label }}</label>
+                                {{ update_form.categories }}
+                                {% for error in update_form.categories.errors %}
+                                    <small class="text-danger">{{ error }}</small>
+                                {% endfor %}
+                            </div>
+                            <!-- Description -->
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label">{{ update_form.description.label }}</label>
+                                {{ update_form.description }}
+                                {% for error in update_form.description.errors %}
+                                    <small class="text-danger">{{ error }}</small>
+                                {% endfor %}
+                            </div>
+                            <!-- Notes -->
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label">{{ update_form.notes.label }}</label>
+                                {{ update_form.notes }}
+                                {% for error in update_form.notes.errors %}
+                                    <small class="text-danger">{{ error }}</small>
+                                {% endfor %}
+                            </div>
+                            <!-- Image -->
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label">{{ update_form.image.label }}</label>
+                                {{ update_form.image }}
+                                {% for error in update_form.image.errors %}
+                                    <small class="text-danger">{{ error }}</small>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <!-- Metadata -->
+                        <p class="text-muted"><small><strong>Created:</strong> {{ product.created_at|date:"F d, Y" }}</small></p>
+                        <p class="text-muted"><small><strong>Updated:</strong> {{ product.updated_at|date:"F d, Y" }}</small></p>
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-info">
+                            <i class="bi bi-save me-2"></i> Update Product
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Button (Optional) -->
+
+{% comment %}
+<div class="mt-4">
+    <form method="post" action="{% url 'product_delete' product.id %}" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this product?');">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">
+            <i class="bi bi-trash me-2"></i> Delete Product
+        </button>
+    </form>
+</div>
+{% endcomment %}
+    
+</div>
+{% endblock %}
