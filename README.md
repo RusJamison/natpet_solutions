@@ -113,9 +113,20 @@ The Relationship diagram for the DBMS consists of the following tables: Manufact
 
       ![Navbar Full](documentation/images/landing-page-navbar.png)
 
+      Navbar Full Signed in as SuperAdmin
+      The superadmin gives permissions to users and frontend admin. The superadmin has full control of front and backend
+
+      ![Navbar Full](documentation/images/super-admin-navbar.png)
+
       Navbar Full Signed in as Admin
+      The admin has full frontend permission to add products, coupons, categories and manufacturers.
 
       ![Navbar Full](documentation/images/admin-navbar.png)
+
+      Navbar Full Signed in as Admin
+      The admin landing page showing items the admin can create or update namely products, coupons, categories and manufacturers. Admin can view orders since orders are created in checkout.
+
+      ![Navbar Full](documentation/images/admin-dashboard-landing-page.png)
 
       Navbar Full Signed in as User
 
@@ -181,13 +192,13 @@ The Relationship diagram for the DBMS consists of the following tables: Manufact
 
       ![User Signed-in After Verification](documentation/images/signed-in.png)
 
--  **F05 Equipment Search**
+-  **F05 Product Search**
 
       In the realm of e-commerce, particularly for specialized sectors like medical equipment supply, the search functionality plays a pivotal role in enhancing user experience and driving sales. The ability to search efficiently allows users to quickly find the products they need, which is crucial in a field where time and precision are paramount. Filtering and Sorting Options: Users can refine their search results based on various parameters such as category, price, and specifications.
 
       Body Text Search
 
-      ![Prodect Search Body Text](documentation/images/search-result.png)
+      ![Product Search Body Text](documentation/images/search-result.png)
 
       Filtering by Price
 
@@ -197,15 +208,43 @@ The Relationship diagram for the DBMS consists of the following tables: Manufact
 
       ![Product Search By Category](documentation/images/category-search.png)
 
--  **F06 Relationship Diagrams For DBMS**
+-  **F06 Product Checkout**
+
+      The first step in the checkout process is managing the shopping basket. Users are able to add items to their basket, view their basket contents, and modify quantities or remove items. In Django, this can be achieved using session variables to store basket data temporarily. Before proceeding to checkout, it is essential to authenticate users. This requires users to log in or create an account. After a successful payment, it is essential to confirm the order to the user. This include sending an email confirmation, displaying an order summary, and updating the order status in the database. Below are the steps to be followed.
+
+       ![Basket Proceed To Checkout](documentation/images/proceed-to-checkout.png)
+
+      Adding Coupon During Checkout
+
+      ![Adding Coupon During Checkout](documentation/images/adding-coupon.png)
+
+      Using A One Time Coupon
+
+      ![Using A One Time Coupon](documentation/images/using-a-one-time-coupon.png)
+
+      
+      Checkout Item Summary
+
+      ![Checkout Item Summary](documentation/images/checkout-item-summary.png)
+
+      
+      Using Stripe Payment
+
+      ![Using Stripe Payment](documentation/images/using-stripe-payment.png)
+
+       Checkout Payment Order Email Confirmation
+
+      ![Checkout Payment Order Email Confirmation](documentation/images/checkout-order-email-confirmation.png)
+
+-  **F07 Relationship Diagrams For DBMS**
 
       To support the above search functionality in a Django e-commerce application for a medical equipment supply shop, a well-structured database is essential. Below is a simplified relationship diagram that outlines the key entities and their relationships within the database management system.
 
       ![DATABASE Relationship](documentation/relationship-diagrams/relationship-diagram.png)
 
--  **F07 Django Admin / store owner**
+-  **F08 Django Admin / store owner**
 
-      The Admin add products, create product categories, product description, models, sku, product manufacturers, products images, price and give users permissions.
+      The SuperAdmin add products, create product categories, product description, models, sku, product manufacturers, products images, price and give users permissions.
       **Adding Products**
       - Once logged into the admin interface:
       - **Navigate to the Products section :** Click on "Products" in the admin dashboard.
@@ -222,20 +261,44 @@ The Relationship diagram for the DBMS consists of the following tables: Manufact
 
       ![Django Admin](documentation/images/adding-products.png)
 
--  **F08 Footer**
+-  **F08 Admin / store owner**
+      The Frontend Admin add products, create product categories, product description, models, sku, product manufacturers, products images,
+
+      ![Front End Admin](documentation/images/admin-frontend-adding-products.png)
+
+      Adding a product
+
+      ![Front End Admin Adding Products](documentation/images/admin-frontend-adding-products-form.png)
+
+      
+      Adding a Category
+
+      ![Front End Admin Adding Category](documentation/images/admin-frontend-adding-categories.png)
+
+      Checking Orders
+      The admin can check orders under order button in Admin
+
+      ![Front End Admin Checking](documentation/images/admin-frontend-viewing-orders.png)
+
+       Checking Orders
+      The admin or user can check orders under MyAccount in the Navbar
+
+      ![User or Admin](documentation/images/myaccount-viewing-orders.png)
+
+-  **F09 Footer**
 
       The footer is a crucial part of the website, serving as a navigational aid and a source of essential information for users. It enhances user experience and builds trust with potential customers by providing easy access to important links and company details. The footer include facebook business page link and Mailchimp subscription
 
       ![Add Unscheduled Work Order View](documentation/images/footer.png)
 
 
--  **F08 Facebook**
+-  **F10 Facebook**
 
       Connecting with customers on social media is essential for engagement. This section include links to:Facebook Business Page
 
       ![Add Unscheduled Work Order View](documentation/images/natpet-facebook-page.png)
 
--  **F10 Mailchimp**
+-  **F11 Mailchimp**
 
       Encouraging users to subscribe to a newsletter can help keep them informed about new products, promotions, and company news. This section should include:
       - Email Input Field: A field for users to enter their email address.
