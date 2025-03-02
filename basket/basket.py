@@ -68,7 +68,7 @@ class Basket:
 
     def get_total_price(self):
         """Calculate total price of all items in basket"""
-        total = (sum(Decimal(item['price']) * 
+        total = (sum(Decimal(item['price']) *
                  item['quantity'] for item in self.basket.values()))
 
         # Apply discount if a valid coupon exists
@@ -76,7 +76,7 @@ class Basket:
         if coupon_code:
             try:
                 coupon = Coupon.objects.get(code=coupon_code, active=True)
-                if coupon.valid_from <= now() <= coupon.valid_to:
+                if coupon.valid_from <= now().date() <= coupon.valid_to:
                     discount = total * (coupon.discount_percentage / 100)
                     total -= discount
             except Coupon.DoesNotExist:

@@ -1,32 +1,54 @@
 {% extends 'admin_dashboard/dashboard_base.html' %}
 {% block dash_content %}
+{% load humanize %}
 <h2 class="mb-4">Dashboard</h2>
 <div class="row">
     <!-- Total Revenue -->
     <div class="col-md-4 ms-auto card text-white bg-info h-100">
         <div class="card-body">
-            <i class="bi bi-currency-dollar float-end fs-3"></i>
+            <i class="bi bi-currency-euro float-end fs-3"></i>
             <h6 class="card-title">Total Revenue</h6>
-            <h3 class="card-text">€125,430.50</h3>
-            <small>+12% from last month</small>
+            <h3 class="card-text">€{{total_price|intcomma}}</h3>
         </div>
     </div>
     <!-- Total Revenue -->
     <div class="col-md-4 ms-auto card text-white bg-info h-100">
         <div class="card-body">
-            <i class="bi bi-currency-dollar float-end fs-3"></i>
-            <h6 class="card-title">Total Revenue</h6>
-            <h3 class="card-text">€125,430.50</h3>
-            <small>+12% from last month</small>
+            <i class="bi bi-box float-end fs-3"></i>
+            <h6 class="card-title">Available Products</h6>
+            <h3 class="card-text">{{total_products|intcomma}}</h3>
         </div>
     </div>
     <!-- Total Revenue -->
     <div class="col-md-4 ms-auto card text-white bg-info h-100">
         <div class="card-body">
-            <i class="bi bi-currency-dollar float-end fs-3"></i>
-            <h6 class="card-title">Total Revenue</h6>
-            <h3 class="card-text">€125,430.50</h3>
-            <small>+12% from last month</small>
+            <i class="bi bi-cart float-end fs-3"></i>
+            <h6 class="card-title">Total Orders Made</h6>
+            <h3 class="card-text">{{total_orders|intcomma}}</h3>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-2">
+    <div class="col-md-4 ms-auto card text-white bg-info h-100">
+        <div class="card-body">
+            <i class="bi bi-cash float-end fs-3"></i>
+            <h6 class="card-title">Total Orders Paid</h6>
+            <h3 class="card-text">{{total_paid_orders|intcomma}}</h3>
+        </div>
+    </div>
+    <div class="col-md-4 ms-auto card text-white bg-info h-100">
+        <div class="card-body">
+            <i class="bi bi-cart float-end fs-3"></i>
+            <h6 class="card-title">Total Categories</h6>
+            <h3 class="card-text">{{total_categories|intcomma}}</h3>
+        </div>
+    </div>
+    <div class="col-md-4 ms-auto card text-white bg-info h-100">
+        <div class="card-body">
+            <i class="bi bi-cart float-end fs-3"></i>
+            <h6 class="card-title">Customers</h6>
+            <h3 class="card-text">{{total_customers|intcomma}}</h3>
         </div>
     </div>
 </div>

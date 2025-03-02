@@ -80,7 +80,8 @@ class CouponApplyView(LoginRequiredMixin, View):
             code = form.cleaned_data.get("code")
             try:
                 coupon = Coupon.objects.get(code=code, active=True)
-                coupon_usage = CouponUsage.objects.filter(coupon=coupon, user=request.user).first()
+                coupon_usage = CouponUsage.objects.filter(
+                    coupon=coupon, user=request.user).first()
                 if not coupon.is_valid():
                     messages.warning(request,
                                      "This coupon expired or is not valid.")

@@ -17,11 +17,12 @@
                 {% if user.is_superuser %}
                 <span class="me-3"><i class="fa-solid fa-user-circle me-2 text-dark"></i><a class="text-dark fw-bolder"
                         href="{% url 'admin_index' %}">Admin</a></span>
-                <span class="me-3"><i class="fa-solid fa-user-circle me-2 text-dark"></i><a class="text-dark fw-bolder"
-                        href="{% url 'admin:index' %}">SuperAdmin</a></span>
-
                 {% endif %}
 
+                {% if user.is_staff %}
+                <span class="me-3"><i class="fa-solid fa-user-circle me-2 text-dark"></i><a class="text-dark fw-bolder"
+                    href="{% url 'admin:index' %}">SuperAdmin</a></span>
+                {% endif %}
 
                 <span class="me-3"><i class="fa-solid fa-file  text-dark me-2"></i><a class="text-dark fw-bolder"
                         href="{% url 'account_logout' %}">Log Out</a></span>

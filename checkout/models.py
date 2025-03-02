@@ -51,7 +51,7 @@ class Order(models.Model):
             except Coupon.DoesNotExist:
                 return total  # Total without discount if coupon doesn't exist
 
-            if coupon and coupon.valid_from <= now() <= coupon.valid_to:
+            if coupon and coupon.valid_from <= now().date() <= coupon.valid_to:
                 discount = total * (Decimal(coupon.discount_percentage) / 100)
                 discounted_total = total - discount
                 return {'sub_total': total, 'discount': discount,
@@ -132,12 +132,12 @@ class Coupon(models.Model):
     discount_percentage = models.DecimalField(
         max_digits=5, decimal_places=2, help_text="Discount in %"
     )
-    valid_from = models.DateTimeField()
-    valid_to = models.DateTimeField()
+    valid_from = models.DateField()
+    valid_to = models.DateField()
     active = models.BooleanField(default=True)
 
     def is_valid(self):
-        return self.active and self.valid_from <= now() <= self.valid_to
+        return self.active and self.valid_from <= now().date() <= self.valid_to
 
     def __str__(self):
         return f"{self.code} - {self.discount_percentage}%"
