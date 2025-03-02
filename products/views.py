@@ -49,7 +49,7 @@ class ProductListView(ListView):
         page_numbers = list(paginator.page_range)
         current_page = page.number
         context["pagination_range"] = page_numbers[
-            max(0, current_page - 3) : current_page + 2
+            max(0, current_page - 3): current_page + 2
         ]
         context['title'] = self.title
         return context

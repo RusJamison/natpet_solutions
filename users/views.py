@@ -21,7 +21,8 @@ class UserProfileView(View):
         profile = user.customer_profile
         form = self.form_class(instance=profile)
         return render(
-            request, "users/user_profile.html", {"form": form, "title": self.title}
+            request, "users/user_profile.html", {
+                "form": form, "title": self.title}
         )
 
     def post(self, request):
@@ -35,7 +36,8 @@ class UserProfileView(View):
         else:
             messages.error(request, "Profile update failed")
         return render(
-            request, "users/user_profile.html", {"form": form, "title": self.title}
+            request, "users/user_profile.html", {
+                "form": form, "title": self.title}
         )
 
 
@@ -71,7 +73,8 @@ class UserOrdersView(LoginRequiredMixin, View):
         # Pagination range logic
         page_numbers = list(paginator.page_range)
         current_page = orders.number
-        pagination_range = page_numbers[max(0, current_page - 3) : current_page + 2]
+        pagination_range = page_numbers[max(
+            0, current_page - 3): current_page + 2]
 
         return render(
             request,
@@ -83,6 +86,7 @@ class UserOrdersView(LoginRequiredMixin, View):
                 "title": self.title,
             },
         )
+
 
 class OrderDetailView(LoginRequiredMixin, DetailView):
     model = Order
@@ -97,5 +101,5 @@ class OrderDetailView(LoginRequiredMixin, DetailView):
         context["order_items"] = self.object.items.all()
 
         context["total_cost"] = self.object.get_total_cost()
-        context['title']=self.title
+        context['title'] = self.title
         return context

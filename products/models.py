@@ -40,13 +40,13 @@ class Product(models.Model):
         "Manufacturer", on_delete=models.CASCADE, related_name="equipments"
     )
     slug = models.CharField(max_length=255, blank=True)
-    # bronchure =CloudinaryField(resource_type="raw", null=True, blank=True, default=None)
     notes = models.TextField(null=True, blank=True, default=None)
     price = models.DecimalField(
         max_digits=50, decimal_places=2, validators=[MinValueValidator(0.0)]
     )
     stock = models.PositiveIntegerField(default=0)
-    categories = models.ManyToManyField(Category, related_name="products", blank=True)
+    categories = models.ManyToManyField(
+        Category, related_name="products", blank=True)
     image = models.ImageField(default="default.png")
     sku = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -75,7 +75,7 @@ class Product(models.Model):
     @property
     def discounted_price(self):
         return self.price - (self.price * (self.discount / 100))
-    
+
     @property
     def final_price(self):
         return self.discounted_price if self.discount else self.price

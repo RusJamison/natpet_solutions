@@ -24,13 +24,16 @@ class FullTextSearch(View, LoginRequiredMixin):
         else:
             results = []
 
-        data = {"Keyword": query, "results": results, 'categories': categories, 'title': self.title}
+        data = {"Keyword": query, "results": results,
+                'categories': categories, 'title': self.title}
         return render(request, self.template_name, data)
-    
+
+
 class RobotsViews(TemplateView):
     template_name = "robots.txt"
-    content_type ="text/plain"
+    content_type = "text/plain"
+
 
 class SiteMapView(TemplateView):
     template_name = "sitemap.xml"
-    content_type ="application/xml"
+    content_type = "application/xml"

@@ -13,22 +13,3 @@ def create_user_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
         print(f"Profile created for user: {instance.username}")
-     #  user = instance
-     #  profile = Profile.objects.create(
-          # user = user,
-          # username = user.username,
-          # email = user.email,
-          # name = user.first_name,
-      # )
-
-    # subject = 'Welcome to Natpet'
-    # message = 'We are glad you are here'
-
-    # send_mail(
-    #    subject,
-    #    message,
-    #    settings.EMAIL_HOST_USER,
-    #    [profile.email],
-    #    fail_silently=False
-
-    # )

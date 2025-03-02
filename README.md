@@ -289,14 +289,14 @@ The Relationship diagram for the DBMS consists of the following tables: Manufact
 
       The footer is a crucial part of the website, serving as a navigational aid and a source of essential information for users. It enhances user experience and builds trust with potential customers by providing easy access to important links and company details. The footer include facebook business page link and Mailchimp subscription
 
-      ![Add Unscheduled Work Order View](documentation/images/footer.png)
+      ![Footer](documentation/images/footer.png)
 
 
 -  **F10 Facebook**
 
       Connecting with customers on social media is essential for engagement. This section include links to:Facebook Business Page
 
-      ![Add Unscheduled Work Order View](documentation/images/natpet-facebook-page.png)
+      ![Facebook Business Page](documentation/images/natpet-facebook-page.png)
 
 -  **F11 Mailchimp**
 
@@ -304,7 +304,7 @@ The Relationship diagram for the DBMS consists of the following tables: Manufact
       - Email Input Field: A field for users to enter their email address.
       - Subscribe Button: A button to submit the email for subscription.
 
-      ![Add Unscheduled Work Order View](documentation/images/mailchimp.png)
+      ![Mailchimp Subscription](documentation/images/mailchimp.png)
 
 
 ### Features which could be implemented in the future
@@ -421,17 +421,174 @@ The Relationship diagram for the DBMS consists of the following tables: Manufact
     - [Python Validator](https://pep8ci.herokuapp.com/)
 
   <details>
-    <summary>project urls.py validation results</summary>
+    <summary>basket urls.py validation results</summary>
 
-    ![Project urls.py](documentation/testing/validation/core-urls-py.png)
+    ![Basket urls.py](documentation/testing/validation/basket-urls-py.png)
   </details>
   <details>
-    <summary>project views.py validation results</summary>
+    <summary>basket views.py validation results</summary>
 
-    ![Project views.py](documentation/testing/validation/core-views-py.png)
+    ![Basket views.py](documentation/testing/validation/basket-views-py.png)
+  </details>
+  
+   <details>
+    <summary>basket models.py validation results</summary>
+
+    ![Basket models.py](documentation/testing/validation/basket-models-py.png)
   </details>
   <details>
-    <summary>Equipment application urls.py validation results</summary>
+    <summary>basket forms.py validation results</summary>
+
+    ![Basket forms.py](documentation/testing/validation/basket-forms-py.png)
+  </details>
+
+  <details>
+    <summary>basket basket.py validation results</summary>
+
+    ![Basket basket.py](documentation/testing/validation/basket-basket-py.png)
+  </details>
+  <details>
+    <summary>basket apps.py validation results</summary>
+
+    ![Basket apps.py](documentation/testing/validation/basket-apps-py.png)
+  </details>
+
+  <details>
+    <summary>basket admin.py validation results</summary>
+
+    ![Basket admin.py](documentation/testing/validation/basket-admin-py.png)
+  </details>
+  <details>
+    <summary>checkout admin.py validation results</summary>
+
+    ![Checkout admin.py](documentation/testing/validation/checkout-admin-py.png)
+  </details>
+
+  <details>
+    <summary>checkout apps.py validation results</summary>
+
+    ![Checkout apps.py](documentation/testing/validation/checkout-apps-py.png)
+  </details>
+
+  <details>
+    <summary>checkout forms.py validation results</summary>
+
+    ![Checkout forms.py](documentation/testing/validation/checkout-forms-py.png)
+  </details>
+
+  <details>
+    <summary>checkout urls.py validation results</summary>
+
+    ![Checkout urls.py](documentation/testing/validation/checkout-urls-py.png)
+  </details>
+
+  <details>
+    <summary>checkout views.py validation results</summary>
+
+    ![Checkout views.py](documentation/testing/validation/checkout-views-py.png)
+  </details>
+
+  <details>
+    <summary>shop views.py validation results</summary>
+
+    ![Shop views.py](documentation/testing/validation/shop-views-py.png)
+  </details>
+
+   <details>
+    <summary>shop urls.py validation results</summary>
+
+    ![Shop urls.py](documentation/testing/validation/shop-urls-py.png)
+  </details>
+
+  <details>
+    <summary>products urls.py validation results</summary>
+
+    ![Products urls.py](documentation/testing/validation/products-urls-py.png)
+  </details>
+
+  <details>
+    <summary>products utils.py validation results</summary>
+
+    ![Products utils.py](documentation/testing/validation/products-utils-py.png)
+  </details>
+
+  <details>
+    <summary>products views.py validation results</summary>
+
+    ![Products views.py](documentation/testing/validation/products-views-py.png)
+  </details>
+
+  <details>
+    <summary>products models.py validation results</summary>
+
+    ![Products models.py](documentation/testing/validation/products-models-py.png)
+  </details>
+
+   <details>
+    <summary>users models.py validation results</summary>
+
+    ![Users models.py](documentation/testing/validation/users-models-py.png)
+  </details>
+
+    <details>
+    <summary>users admin.py validation results</summary>
+
+    ![Users admin.py](documentation/testing/validation/users-admin-py.png)
+  </details>
+
+    <details>
+    <summary>users forms.py validation results</summary>
+
+    ![Users forms.py](documentation/testing/validation/users-forms-py.png)
+  </details>
+
+    <details>
+    <summary>users signals.py validation results</summary>
+
+    ![Users signals.py](documentation/testing/validation/users-signals-py.png)
+  </details>
+
+    <details>
+    <summary>users utls.py validation results</summary>
+
+    ![Users urls.py](documentation/testing/validation/users-urls-py.png)
+  </details>
+
+    <details>
+    <summary>users views.py validation results</summary>
+
+    ![Users views.py](documentation/testing/validation/users-views-py.png)
+  </details>
+
+    <details>
+    <summary>admin dashboard views.py validation results</summary>
+
+    ![Admin Dashboard views.py](documentation/testing/validation/admin-dashboard-views-py.png)
+  </details>
+
+    <details>
+    <summary>admin dashboard forms.py validation results</summary>
+
+    ![Admin Dashboard forms.py](documentation/testing/validation/admin_dashboard-forms-py.png)
+  </details>
+
+    <details>
+    <summary>admin dashboard urls.py validation results</summary>
+
+    ![Admin Dashboard urls.py](documentation/testing/validation/admin_dashboard-urls-py.png)
+  </details>
+
+  <details>
+    <summary>natpet solutions urls.py validation results</summary>
+
+    ![Natpet Solutions urls.py](documentation/testing/validation/natpet-solutions-urls-py.png)
+  </details>
+
+   <details>
+    <summary>natpet solutions views.py validation results</summary>
+
+    ![Natpet Solutions views.py](documentation/testing/validation/natpet-solutions-views-py.png)
+  </details>
 
 
 
