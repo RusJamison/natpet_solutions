@@ -189,7 +189,7 @@ class PaymentProcessView(LoginRequiredMixin, View):
             del request.session["order_id"]
 
         send_template_email(
-            subject="Sample Email",
+            subject="Please Check Your Order Details",
             to_email=request.user.email,
             template_name="order_complete",
             context={"order": order, "user": request.user,

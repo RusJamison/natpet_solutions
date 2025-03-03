@@ -36,7 +36,7 @@
                         <div class="form-group">
                             <label for="quantity">Quantity</label>
                             <input type="number" required name="quantity" id="quantity" class="form-control"
-                                max="{{product.stock}}">
+                                min='1' max="{{product.stock}}">
                             <input type="submit" class="btn btn-info mt-4" value="Add to Basket">
                             <a href="{% url 'product_list' %}" class="btn btn-dark mt-4">Back To Shop</a>
                         </div>

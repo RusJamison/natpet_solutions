@@ -212,7 +212,7 @@ The Relationship diagram for the DBMS consists of the following tables: Manufact
 
       The first step in the checkout process is managing the shopping basket. Users are able to add items to their basket, view their basket contents, and modify quantities or remove items. In Django, this can be achieved using session variables to store basket data temporarily. Before proceeding to checkout, it is essential to authenticate users. This requires users to log in or create an account. After a successful payment, it is essential to confirm the order to the user. This include sending an email confirmation, displaying an order summary, and updating the order status in the database. Below are the steps to be followed.
 
-       ![Basket Proceed To Checkout](documentation/images/proceed-to-checkout.png)
+      ![Basket Proceed To Checkout](documentation/images/proceed-to-checkout.png)
 
       Adding Coupon During Checkout
 
@@ -590,17 +590,23 @@ The Relationship diagram for the DBMS consists of the following tables: Manufact
     ![Natpet Solutions views.py](documentation/testing/validation/natpet-solutions-views-py.png)
   </details>
 
+### Manual Testing
 
-
-
-
-
-
-
-
-
-
-
+| User Story                                                              | Acceptance Criteria                                                       | Steps                                                                                                             | Expected Outcome                                                                                            | Result |
+| ----------------------------------------------------------------------- | ------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ------ |
+| US01:Registration and user account<br>US04:Registration confirmation    | <br>The "Sign Up," or "Login" must be visible.                            | Check for Sign-up or Login<br>Sign up                                                                             | Sign Up and Login clearly labelled at the top<br>Sign up<br>Mandatory email verification                    | Pass   |
+| US02: Easily login or logout                                            | Login<br>Logout                                                           | Enter your email you registered with<br>Enter your password<br><br>.                                              | User is signed in<br>User can access checkout and pay for products                                          | Pass   |
+| US03: Recover password                                                  | Password reset                                                            | Login<br>Enter email<br>Enter Password<br>If password not correct reset password                                  | Use email to reset password<br>Password reset                                                               | Pass   |
+| US05:Personalized user profile                                          | Can view profile<br>Can view order history                                | Go to myaccount<br>Click profile<br>Click orders                                                                  | After clicking profile you view billing information<br>After clicking orders you view user purchase history | Pass   |
+| US06: View products to purchase<br>US07:View individual product details | View products<br>View product details<br>                                 | Click Start button<br>Click view details                                                                          | Access to all products<br>Access product full details                                                       | Pass   |
+| US08:Quickly identify deals                                             | Discounts clearly labelled and easy to view                               | Look for price in red colour                                                                                      | View discounted products                                                                                    |        |
+| US09: View total cost of items in my basket                             | Add items to basket                                                       | Add items<br>Update items<br>Remove items<br>Keep on shopping                                                     | View total cost                                                                                             | Pass   |
+| US10: Sorting products                                                  | Sort products by category<br>Sort products by price                       |  Click on category<br>Enter price range for products                                                              | View items of one category<br>View items of certain price range                                             | Pass   |
+| US11: Searching for a product<br>US12: Search results                   | Search product by name or description<br>Search using key words           | Search products                                                                                                   | View searched items                                                                                         | Pass   |
+| US13:  Adding to the basket                                             | Add items to basket                                                       | Add items<br>Update items<br>Remove items<br>Keep on shopping                                                     | view items<br>check price and total cost                                                                    | Pass   |
+| US14: Payment                                                           | Checkout<br>Use payment system                                            | Add items<br>Update items<br>Remove items<br>Keep on shopping<br>Checkout<br>Place order<br>Enter payment details | Payment confirmation                                                                                        | Pass   |
+| US15: Adding products                                                   | Add products to store from backend<br>Add products to store from frontend | Sign in as SuperAdmin. Add products<br>Sign in as Admin. Add products<br>                                         | Products are added<br>Discount is applied to items<br>Coupons are applied                                   | Pass   |
+| US16: Edit / Update products                                            | Edit products price and detail<br>Add discount and coupons                | Sign in as Admin or SuperAdmin<br>                                                                                | Products are added<br>Discount is applied to items<br>Coupons are applied                                   | Pass   |
 
 
 ### Lighthouse Testing
@@ -608,20 +614,6 @@ The Relationship diagram for the DBMS consists of the following tables: Manufact
   -   Lighthouse testing results
 
       ![Lighthouse Check](documentation/testing/results/lighthouse.png)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ### Previous DJANGO SECRET_KEY
@@ -703,15 +695,15 @@ Steps below show how to clone this project repository, configure and deploy the 
    - Linkedin Learning
    - Coursera
 
-[Bootstrap 5.2.3 static CSS & JS](https://getbootstrap.com/docs/5.2/getting-started/download/)
+   Bootstrap 5.2.3 static CSS & JS(https://getbootstrap.com/docs/5.2/getting-started/download/)
 
-[Bootstrap navbar](https://startbootstrap.com/template/shop-homepage)
+   Bootstrap navbar(https://startbootstrap.com/template/shop-homepage)
 
-[Stripe setup](https://youtu.be/722A27IoQnk?si=72I3lxqKj7FJav0W)
+   Stripe setup(https://youtu.be/722A27IoQnk?si=72I3lxqKj7FJav0W)
 
-[Stripe setup](https://www.youtube.com/watch?v=cdE7YiBOo_w)
+   Stripe setup(https://www.youtube.com/watch?v=cdE7YiBOo_w)
 
-[Bootstrap html snippets](http://bootdey.com)
+   Bootstrap html snippets(http://bootdey.com)
 
    Object Oriented Programming in Python by Estefania Cassingena Navone (https://www.udemy.com/course/python-object-oriented-programming-oop/learn/lecture/12356228?start=150#overview)
 
