@@ -19,7 +19,13 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import FullTextSearch, RobotsViews, SiteMapView
+from .views import (
+    FullTextSearch,
+    RobotsViews,
+    SiteMapView,
+    custom_page_not_found_view,
+    custom_error_view,
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -34,3 +40,6 @@ urlpatterns = [
     path('sitemap.xml/', SiteMapView.as_view()),
     path("admin_dashboard/", include("admin_dashboard.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = custom_page_not_found_view
+handler500 = custom_error_view
